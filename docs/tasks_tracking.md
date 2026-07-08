@@ -21,6 +21,9 @@
 | **Lissage** | Intégration globale dans `App.tsx` | **Terminé** | 2026-07-08 |
 | **Lissage** | Importations polices Google Fonts & CSS Theme | **Terminé** | 2026-07-08 |
 | **Validation** | Passage de la suite de typage `lint_applet` | **Terminé** | 2026-07-08 |
+| **Lissage** | Remplacement des icônes de substitution par les vrais logos de marque | **Terminé** | 2026-07-08 |
+| **Lissage** | Promotion de DocuGen Pro en étude de cas majeure avec lien de production et captures réelles | **Terminé** | 2026-07-08 |
+| **Lissage** | Promotion de l'application 'Entretien Pro' en étude de cas majeure avec lien de production et captures d'écran réelles conformes | **Terminé** | 2026-07-08 |
 
 ---
 

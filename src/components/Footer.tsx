@@ -4,24 +4,26 @@
  */
 
 import React from 'react';
-import { Brain, ArrowUp } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 text-white py-12 border-t border-slate-800" id="main-footer">
+    <footer className="bg-[#181615] text-white py-16 border-t border-[#292625]" id="main-footer">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           
           {/* Logo & Slogan */}
-          <div className="flex items-center space-x-3 text-center md:text-left" id="footer-logo">
-            <Brain className="w-5 h-5 text-indigo-400" />
-            <div>
-              <span className="font-display font-bold tracking-tight text-sm uppercase block">
+          <div className="flex items-center space-x-4 text-center md:text-left" id="footer-logo">
+            <span className="font-sans font-black text-white text-xl tracking-widest uppercase shrink-0">
+              H<span className="text-brand-accent">.</span>C
+            </span>
+            <div className="border-l border-[#292625] pl-4">
+              <span className="font-sans font-extrabold tracking-widest text-[11px] uppercase block">
                 Horacio Chinkoun
               </span>
-              <span className="font-mono text-[10px] text-slate-400">
+              <span className="font-sans text-[10px] text-gray-400">
                 Architecte Fonctionnel & Orchestrateur de Produits IA
               </span>
             </div>
@@ -29,24 +31,24 @@ export default function Footer() {
 
           {/* Quick legal/tech indicators */}
           <div className="text-center md:text-right space-y-1.5" id="footer-details">
-            <p className="font-sans text-xs text-slate-400">
+            <p className="font-sans text-xs text-gray-400">
               &copy; {currentYear} Horacio Chinkoun. Tous droits réservés.
             </p>
-            <p className="font-mono text-[9px] text-slate-500">
-              Prototype Statique compilé avec Vite & React. Dirigé par IA.
+            <p className="font-mono text-[9px] text-[#faf8f5]/40">
+              PROTOTYPE D'EXCELLENCE STATIQUE COMPILES SUR LWS &bull; CONVAINCU PAR LA RIGUEUR
             </p>
           </div>
 
         </div>
 
         {/* Back to top anchor */}
-        <div className="mt-8 pt-8 border-t border-slate-800/60 flex justify-center">
+        <div className="mt-8 pt-8 border-t border-[#292625]/60 flex justify-center">
           <a
             href="#accueil"
-            className="inline-flex items-center space-x-1.5 font-sans text-[11px] text-slate-400 hover:text-white uppercase tracking-wider font-semibold transition-colors focus:outline-none"
+            className="inline-flex items-center space-x-1.5 font-sans text-[10px] text-gray-400 hover:text-white uppercase tracking-widest font-extrabold transition-colors focus:outline-none"
             id="back-to-top-link"
           >
-            <ArrowUp className="w-3.5 h-3.5" />
+            <ArrowUp className="w-3.5 h-3.5 text-brand-accent" />
             <span>Retour en haut</span>
           </a>
         </div>

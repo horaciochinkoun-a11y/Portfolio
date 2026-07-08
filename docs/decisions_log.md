@@ -40,7 +40,7 @@
 ## ADR-03 : Intégration de Fenêtres Modales pour les Études de Cas
 
 *   **Date :** 2026-07-08  
-*   **Statut :** Validé  
+*   **Statut :** Obsolète (Remplacé par ADR-04)  
 *   **Contexte :**  
     Les études de cas détaillées comportent de longs textes explicatifs et des blocs de prompts système. Les afficher directement sur le one-pager alourdirait considérablement la lisibilité globale.
 *   **Décision :**  
@@ -49,3 +49,33 @@
     *   ✔ Le one-pager reste compact, rapide et lisible.
     *   ✔ L'utilisateur accède aux détails techniques uniquement s'il le souhaite.
     *   ✔ Excellente expérience de lecture immersive sur mobile et desktop.
+
+---
+
+## ADR-04 : Transition vers des pages d'Études de Cas Dédiées (Hash-Routing)
+
+*   **Date :** 2026-07-08  
+*   **Statut :** Validé  
+*   **Contexte :**  
+    Les fenêtres modales restreignent le partage direct d'une étude de cas spécifique (deep-linking) et s'avèrent moins adaptées pour le SEO et le confort de lecture prolongé.
+*   **Décision :**  
+    Migrer vers un système de routage client-side par hash (`window.location.hash`) et créer un composant de page dédié `CaseStudyPage.tsx`. Les études de cas sont accessibles via des URLs spécifiques (ex: `#/projets/nukemap-edu`).
+*   **Conséquences :**  
+    *   ✔ Possibilité pour Horacio de partager le lien d'une étude de cas précise directement à un prospect ou recruteur.
+    *   ✔ Expérience utilisateur plein écran, idéale pour la lecture de prompts et d'analyses.
+    *   ✔ Cohérence avec l'architecture SPA statique de LWS.
+
+---
+
+## ADR-05 : Promotion de DocuGen Pro en Étude de Cas Majeure
+
+*   **Date :** 2026-07-08  
+*   **Statut :** Validé  
+*   **Contexte :**  
+    L'outil de génération de livrables "DocuGen Pro" est pleinement fonctionnel et déployé à une adresse de production stable. Il constitue un cas concret d'intégration de LegalTech et de prompt-engineering d'élite à forte valeur ajoutée.
+*   **Décision :**  
+    Promouvoir DocuGen Pro au rang de projet principal (type `primary`), lui associer son adresse de production active et concevoir une fiche d'étude de cas détaillée, appuyée par 5 captures d'écran fidèles issues de l'application réelle.
+*   **Conséquences :**  
+    *   ✔ Enrichit le portfolio d'une quatrième étude de cas extrêmement concrète orientée SaaS B2B.
+    *   ✔ Démontre la capacité d'Horacio à cadrer des flux complexes (génération de documents certifiés par codes QR, synthèse technique, CV, post LinkedIn).
+

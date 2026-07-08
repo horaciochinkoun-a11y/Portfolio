@@ -52,7 +52,7 @@ export default function App() {
     : null;
 
   return (
-    <div className="min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white" id="portfolio-app-root">
+    <div className="min-h-screen flex flex-col justify-between selection:bg-[#ea580c] selection:text-white" id="portfolio-app-root">
       {/* Dynamic Floating Navbar with route awareness */}
       <Navbar currentRouteType={currentRoute.type} />
 

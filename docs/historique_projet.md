@@ -51,3 +51,20 @@ Le site est conçu sous forme d'une **Single Page Application (SPA) ultra-rapide
 ### [2026-07-08] - Transition vers des pages d'Études de Cas Dédiées (Hash-Routing)
 *   **Description :** Remplacement du système d'affichage par fenêtres modales par un routeur d'ancrage client-side (`window.location.hash`) et création du composant de page dédié `CaseStudyPage.tsx`. Les études de cas majeures sont désormais affichées à des URLs uniques de type `#/projets/:id`.
 *   **Impact :** Allègement significatif de l'interface d'accueil, favorisant la concentration du visiteur. Les liens directs (deep-linking) vers les études de cas majeures (comme `#/projets/nukemap-edu` ou `#/projets/prepa-concours-benin`) sont désormais pleinement opérationnels, ce qui permet à un recruteur de partager ou d'accéder instantanément au contenu recherché. La barre de navigation et le bouton de retour à l'accueil collaborent en parfaite synergie.
+
+### [2026-07-08] - Implémentation du Design System "Aquilas Dev" (Warm Luxury)
+*   **Description :** Refonte esthétique complète inspirée du design Aquilas Dev. Remplacement de l'ensemble des arrondis par des coins vifs (`rounded-none` / "sharp-flat"), ajout d'un motif de grille d'alignement fine en arrière-plan, passage à une palette de couleurs chaleureuse et raffinée (fond Cream `#faf8f5`, éléments structurels Deep Charcoal `#181615`, accents Warm Orange `#ea580c`), intégration de typographies prestigieuses (`Cormorant Garamond` et `Space Grotesk`), et ajustement des sélections de texte et cadres d'image ("double cadre asymétrique décalé").
+*   **Impact :** Alignement total avec la demande de copie visuelle prestigieuse de l'utilisateur. Le portfolio dégage désormais une atmosphère haut de gamme et sophistiquée qui magnifie le professionnalisme d'Horacio Chinkoun sans compromettre la clarté de son contenu.
+
+### [2026-07-08] - Intégration des Vrais Logos Officiels des Technologies
+*   **Description :** Remplacement des icônes de substitution par les logos vectoriels officiels de Node.js, React, Tailwind CSS, PostgreSQL, TypeScript et Google Gemini (avec son dégradé caractéristique).
+*   **Impact :** Apporte une dimension de crédibilité technique immédiate et une plus grande facilité de lecture pour les recruteurs. Les technologies phares se détachent désormais avec brio et authenticité visuelle.
+
+### [2026-07-08] - Promotion de DocuGen Pro et Intégration de Captures Réelles
+*   **Description :** Promotion de DocuGen Pro au rang d'étude de cas majeure (primary project) avec l'intégration de son lien de production en direct (`https://ais-pre-q43ulohc7kvdx6uhwkngzg-145910217857.europe-west3.run.app`) et génération de 5 captures d'écran fidèles issues de l'application réelle pour enrichir son étude de cas (landing page, formulaire de configuration, attestation, post LinkedIn généré, et code QR de validation numérique).
+*   **Impact :** Donne au portfolio d'Horacio Chinkoun une quatrième étude de cas extrêmement solide et interactive, démontrant son savoir-faire pratique sur un outil SaaS/LegalTech d'automatisation de livrables.
+
+### [2026-07-08] - Promotion d'Entretien Pro et Intégration des Captures Réelles
+*   **Description :** Promotion de l'étude de cas 'Entretien Pro' (précédemment 'Mock Interview Pro') avec liaison officielle vers l'URL de production (`https://mock-interview-pro-475449336443.us-west2.run.app`). Intégration de 6 captures d'écran réelles recréées avec une fidélité chirurgicale à partir des screenshots officiels fournis par l'utilisateur (landing page, écran de configuration rapide, dialogue d'entretien en attente, défi de gestion de crise d'un Chef Cuisinier, en-tête du rapport d'évaluation 0/100, et tableau de bord de debrifing final avec options d'export PDF/Word).
+*   **Impact :** Consacre 'Entretien Pro' comme un projet d'ingénierie vocale et de persona conversationnel d'IA majeur, parfaitement documenté et directement consultable en production. Garantit un respect absolu de la consigne d'intégrité de l'utilisateur en bannissant toute illustration générique non représentative au profit d'écrans fidèles à la réalité du produit.
+

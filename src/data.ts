@@ -134,46 +134,55 @@ export const projects: Project[] = [
   },
   {
     id: "mock-interview-pro",
-    title: "Mock Interview Pro",
-    tagline: "Simulateur d'entretien d'embauche par IA vocale interactive",
-    shortDescription: "Une plateforme d'entraînement à l'entretien de recrutement simulant un recruteur senior exigeant avec un traitement vocal intelligent et fluide.",
-    longDescription: "Un simulateur d'entretien d'embauche interactif conçu pour aider les professionnels à surmonter le stress de l'oral. L'utilisateur interagit à haute voix avec un avatar IA qui pose des questions, analyse les réponses orales, et fournit un rapport d'évaluation constructif basé sur de véritables grilles d'évaluation RH.",
+    title: "Entretien Pro",
+    tagline: "Simulateur d'entretien d'embauche réaliste par IA vocale interactive",
+    shortDescription: "Une plateforme d'entraînement immersive simulant un recruteur senior extrêmement exigeant, avec évaluation comportementale et feedback analytique immédiat.",
+    longDescription: "Un simulateur d'entretien de recrutement en conditions réelles. L'utilisateur configure son poste, son niveau d'expérience et son sujet d'évaluation, puis relève des défis de gestion de crise complexes posés oralement par l'IA. L'application évalue en continu la communication, les compétences techniques et la pertinence commerciale de chaque réponse.",
     category: "RH & Entraînement Professionnel",
     type: "primary",
-    technologies: ["React", "Tailwind CSS", "Gemini API (Speech)", "Web Audio API"],
-    status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
+    technologies: ["React", "Tailwind CSS", "Gemini API", "Web Audio API", "Voice Synthesis Engine"],
+    status: "Déployé en production (accessible en ligne)",
+    liveUrl: "https://mock-interview-pro-475449336443.us-west2.run.app",
     iconName: "Mic",
     iconUrl: "/src/assets/images/mock_interview_icon_1783542720942.jpg",
+    screenshots: [
+      "/src/assets/images/Capture d’écran (1091).png",
+      "/src/assets/images/Capture d’écran (1092).png",
+      "/src/assets/images/Capture d’écran (1093).png",
+      "/src/assets/images/Capture d’écran (1094).png",
+      "/src/assets/images/Capture d’écran (1095).png",
+      "/src/assets/images/Capture d’écran (1096).png"
+    ],
     caseStudy: {
-      context: "La réussite d'un entretien d'embauche dépend à 80% de la gestion du stress à l'oral et de la structure de l'argumentation sous la pression des questions du recruteur.",
-      problem: "Les séances de simulation d'entretien avec des mentors ou professionnels RH sont rares, coûteuses, et exigent une planification complexe. Les outils basés sur le texte manquent du réalisme nécessaire d'un échange vocal rythmé.",
-      approach: "Cadrage d'une boucle d'interaction vocale sans couture (VUI - Voice User Interface) où l'utilisateur écoute le recruteur, enregistre sa réponse d'un clic, et reçoit immédiatement la relance du recruteur simulé.",
+      context: "La préparation aux entretiens d'embauche pour des postes à haute responsabilité exige des mises en situation intenses et un retour d'expérience objectif immédiat pour corriger la posture et l'argumentation.",
+      problem: "Les simulations réelles avec des recruteurs humains sont coûteuses et difficiles à planifier, tandis que les questionnaires classiques ne simulent pas la tension émotionnelle d'un échange direct et réactif.",
+      approach: "Conception d'une plateforme d'entretien blanc immersive, appelée 'Entretien Pro'. Elle intègre un assistant virtuel complet, doté d'une console d'évaluation analytique en temps réel et d'une notation finale rigoureuse à double niveau d'analyse (points forts, axes d'amélioration, plan opérationnel).",
       promptEngineering: [
         {
-          title: "Ingénierie du Persona de Recruteur",
-          description: "Prompt système configurant les biais cognitifs positifs, le style de relance et l'exigence d'un recruteur en capital humain.",
-          promptText: "Tu es un recruteur en chef de cabinet de recrutement d'élite. Tu évalues des profils pour des postes managériaux et techniques d'excellence.\n\nCOMPORTEMENT :\n1. Adopte un ton formel, poli, observateur et exigeant.\n2. Pose une seule question comportementale claire à la fois (par exemple, en te basant sur la méthodologie STAR).\n3. Prends note de la transcription de la réponse orale du candidat. Analyse la cohérence de ses propos, sa structure argumentative, et rebondis spécifiquement sur ses faiblesses lors de ta relance.\n4. NE sors JAMAIS de ton rôle. Si le candidat s'arrête ou demande de l'aide, réponds comme le ferait un vrai recruteur qui teste sa résilience."
+          title: "Ingénierie du Persona de Recruteur Exigeant",
+          description: "Instructions sémantiques strictes configurant le style de relance et l'exigence d'un expert-jury pour tester la résilience du candidat.",
+          promptText: "Tu es un expert recruteur extrêmement exigeant de l'espace européen et africain (OHADA). Évalue le candidat sur un cas de gestion de crise complexe (ex: Chef Cuisinier confronté simultanément à un accident de travail grave, une grève d'équipe pour des heures supplémentaires, et une inspection d'hygiène inopinée de l'AFSCA). Rebondis sur ses réponses orales avec rigueur, analyse ses faiblesses en direct (Communication, Hard Skills, Pertinence commerciale) et dresse un bilan final brut sous forme de notation quantitative."
         }
       ],
       challenges: [
-        "Gérer la capture audio du micro, la conversion de flux et le traitement dans les limites de l'iFrame sans latence frustrante.",
-        "Fournir un feedback analytique quantitatif sur l'intonation et la pertinence des réponses sans perturber le fil de la simulation."
+        "Coordonner la capture vocale et le retour audio synthétisé côté client pour éliminer toute latence lors du dialogue.",
+        "Générer un rapport d'évaluation extrêmement complet et structuré en fin de simulation."
       ],
       solutions: [
-        "Utilisation de l'API Web Audio pour une capture locale propre et envoi asynchrone des flux compressés au SDK Gemini.",
-        "Division du workflow en deux phases : une simulation immersive audio fluide en cours, et un écran de débriefing analytique complet généré en fin de parcours."
+        "Mise en œuvre d'un moteur de synthèse vocale performant couplé à une analyse asynchrone des transcriptions textuelles.",
+        "Élaboration d'une structure de données analytique ordonnée, fournissant des retours clairs sur les angles morts, drapeaux rouges et plans d'amélioration exploitables."
       ],
-      statusDetail: "Ce projet est un prototype fonctionnel et interactif, illustrant l'intégration de pipelines vocaux intelligents au sein d'applications web d'entraînement.",
-      valueAdded: "Permet aux candidats de pratiquer de façon autonome, sécurisée et illimitée, éliminant l'anxiété de l'échec initial.",
+      statusDetail: "Déployé en production et accessible en ligne, offrant une simulation fluide et des fonctionnalités d'export PDF/Word.",
+      valueAdded: "Permet aux professionnels et gestionnaires opérationnels de tester leur sang-froid et la structure de leur argumentation sur des cas pratiques d'une rare intensité.",
       useCases: [
-        "Un candidat s'entraîne à répondre à la question redoutable 'Pourquoi devrions-nous vous recruter plutôt qu'un autre ?' et reçoit un débrief complet sur ses forces et axes d'amélioration.",
-        "Simulation d'un panel de recrutement technique stressant avec plusieurs voix d'IA posant des questions."
+        "Un candidat simule un cas de gestion de crise critique pour un poste de chef de cuisine intermédiaire, en gérant des urgences RH, d'hygiène et médicales de front.",
+        "Analyse des axes d'amélioration comportementale et de communication, avec édition et export du rapport d'évaluation."
       ],
       skillsDemonstrated: [
-        "Conception de parcours vocaux (VUI)",
-        "Prompt Engineering conversationnel",
-        "Modélisation de logiques d'évaluation RH",
-        "Maîtrise des APIs Web Audio et de capture client"
+        "Conception de systèmes conversationnels complexes (VUI)",
+        "Ingénierie de scénarios et de personas d'évaluation",
+        "Analyse sémantique et notation en temps réel",
+        "Gestion de l'accessibilité vocale"
       ]
     }
   },
@@ -206,15 +215,55 @@ export const projects: Project[] = [
   {
     id: "docugen-pro",
     title: "DocuGen Pro",
-    tagline: "Générateur automatisé de documents et contrats professionnels",
-    shortDescription: "Un assistant de rédaction juridique et commerciale qui génère des modèles de documents précis sur la base de questionnaires intelligents.",
-    longDescription: "Un outil indispensable pour les freelances et petites entreprises, permettant de générer instantanément des contrats de prestation, des accords de confidentialité (NDA) ou des propositions commerciales personnalisées, le tout conforme aux législations locales béninoises et OHADA.",
+    tagline: "Générateur automatisé de documents et livrables professionnels",
+    shortDescription: "Un assistant de rédaction juridique et commerciale qui génère des modèles de documents précis et des posts marketing sur la base de questionnaires intelligents.",
+    longDescription: "Un outil indispensable pour les freelances et petites entreprises, permettant de générer instantanément des attestations de prestation, des résumés techniques, des versions CV et des publications LinkedIn personnalisées, le tout conforme aux standards de design et de validation numérique.",
     category: "LegalTech & Productivité",
-    type: "secondary",
-    technologies: ["React", "Tailwind CSS", "Gemini API", "jsPDF / HTML2PDF"],
-    status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
+    type: "primary",
+    technologies: ["React", "Tailwind CSS", "Gemini API", "jsPDF / HTML2PDF", "QR Code Engine"],
+    status: "Déployé en production (accessible en ligne)",
+    liveUrl: "https://ais-pre-q43ulohc7kvdx6uhwkngzg-145910217857.europe-west3.run.app",
     iconName: "FileText",
-    iconUrl: "/src/assets/images/docugen_pro_icon_1783542757680.jpg"
+    iconUrl: "/src/assets/images/docugen_pro_icon_1783542757680.jpg",
+    screenshots: [
+      "/src/assets/images/Capture d’écran (1022).png",
+      "/src/assets/images/Capture d’écran (1023).png",
+      "/src/assets/images/Capture d’écran (1024).png",
+      "/src/assets/images/Capture d’écran (1025).png",
+      "/src/assets/images/Capture d’écran (1027).png"
+    ],
+    caseStudy: {
+      context: "Les freelances et prestataires techniques en Afrique de l'Ouest font face à un défi récurrent : valoriser leurs travaux de manière professionnelle et générer des documents de clôture de projet (attestations, résumés, posts sociaux) sans friction.",
+      problem: "La rédaction de livrables professionnels de fin de mission est chronophage, et la validation de l'authenticité de ces documents est difficile à prouver de manière décentralisée. De plus, transformer une livraison technique en contenu marketing LinkedIn percutant exige un effort rédactionnel important.",
+      approach: "Conception d'un outil en ligne intelligent avec un double volet : un panneau de configuration rapide des paramètres de mission à gauche, et un générateur multi-onglets interactif à droite produisant des attestations certifiées, des synthèses techniques, des fiches CV et des posts LinkedIn prêts à publier.",
+      promptEngineering: [
+        {
+          title: "Prompt d'Analyse et de Formalisation de Livrables",
+          description: "Instructions sémantiques obligeant le modèle à structurer des attestations solennelles et des synthèses techniques rigoureuses d'après des métadonnées réduites.",
+          promptText: "Tu es un assistant juridique et marketing senior. À partir des métadonnées du projet (Développeur, Client, Statut, Durée, Technologies, Résultats), génère :\n1. Une Attestation de Réalisation de Prestation formelle et solennelle en français.\n2. Une synthèse technique d'ingénierie mettant en valeur les résultats quantifiables.\n3. Un post LinkedIn viral structuré (Problème, Solution, Résultats avec émojis et hashtags pertinents).\nRespecte strictement les formules de politesse de l'espace OHADA et du droit béninois."
+        }
+      ],
+      challenges: [
+        "Assurer un rendu papier parfait des attestations générées sur tous les écrans et navigateurs mobiles.",
+        "Proposer un mécanisme d'authenticité numérique léger sans infrastructure complexe."
+      ],
+      solutions: [
+        "Mise en œuvre d'un conteneur de type 'A4 Canvas' avec marges CSS contrôlées et styles typographiques précis.",
+        "Intégration d'un générateur de code QR dynamique côté client encodant l'URL de vérification pour une authentification instantanée."
+      ],
+      statusDetail: "Déployé en production et pleinement accessible en ligne sous forme de PWA autonome.",
+      valueAdded: "Permet aux ingénieurs et créateurs indépendants de formaliser instantanément leur historique professionnel et d'optimiser leur visibilité sur les réseaux professionnels.",
+      useCases: [
+        "Un développeur freelance génère son attestation de fin de contrat signée numériquement et l'exporte en PDF.",
+        "Génération automatique d'un post LinkedIn optimisé décrivant la résolution d'une problématique technique complexe avec indicateurs de performance."
+      ],
+      skillsDemonstrated: [
+        "Cadrage fonctionnel d'utilitaires B2B",
+        "Ingénierie de formulaires complexes",
+        "Génération documentaire côté client",
+        "Intégration de briques de validation de confiance"
+      ]
+    }
   },
   {
     id: "doc2form",

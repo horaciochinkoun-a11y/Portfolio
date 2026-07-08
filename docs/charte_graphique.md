@@ -1,8 +1,8 @@
 # Charte Graphique — Design System
 > Identité visuelle, règles d'usage typographique, et spécifications des composants UI.
 
-**Version :** 1.0  
-**Thème :** Light (Sable / Slate épuré)  
+**Version :** 2.0  
+**Thème :** Light Luxury (Warm Cream & Deep Charcoal, accents Warm Orange)  
 **Dernière mise à jour :** 2026-07-08  
 
 ---
@@ -26,112 +26,113 @@
 
 | Nom sémantique | Valeur Hex | Token CSS / Tailwind | Rôle primaire | Restrictions | Niveau d'autorité |
 |---|---|---|---|---|---|
-| **Deep Slate** | `#0f172a` | `--color-slate-900` | Arrière-plan des en-têtes noirs et menus scrolled. | Ne pas utiliser pour les textes courants sur fond noir. | Primaire |
-| **Indigo Velvet** | `#6366f1` | `--color-brand-accent` | Couleur d'accentuation, boutons d'action majeurs, badges. | Ne jamais utiliser comme couleur de texte sur fond blanc. | Primaire |
-| **Soft Blue Grey**| `#f8fafc` | `--color-slate-50` | Arrière-plan global des pages claires. | Ne pas utiliser comme fond d'écriture pour du texte blanc. | Secondaire |
-| **Pristine White** | `#ffffff` | `bg-white` | Arrière-plan des cartes (cards) et des blocs modaux. | Ne pas empiler plusieurs cartes blanches imbriquées. | Secondaire |
-| **Muted Slate** | `#64748b` | `text-slate-500` | Texte de sous-titres, métadonnées, légendes. | Ne pas utiliser pour les textes longs à petit caractère (contraste). | Sémantique |
-| **Rose Alert** | `#f43f5e` | `text-rose-500` | Signal de statut "prototype non déployé". | Utiliser uniquement pour le signalement de statut technique. | Sémantique |
-| **Emerald Success**| `#10b981` | `bg-emerald-500` | Signal de soumission réussie et disponibilité. | Limiter aux badges d'état connectés en direct. | Sémantique |
+| **Cream Canvas** | `#faf8f5` | `bg-[#faf8f5]` / `--color-brand-cream` | Arrière-plan global chaleureux et texturé. | Conserver l'aspect grisé avec le pattern de grille d'alignement. | Primaire |
+| **Deep Charcoal** | `#181615` | `bg-[#181615]` / `--color-brand-primary` | Couleur de base des textes, boutons primaires et zones sombres structurantes (Navbar, Footer). | Ne pas diluer son opacité pour les textes importants. | Primaire |
+| **Warm Orange** | `#ea580c` | `text-[#ea580c]` / `--color-brand-accent` | Couleur d'accentuation, boutons secondaires, bordures d'alerte, puces. | Éviter d'utiliser pour les grands blocs de texte continus. | Primaire |
+| **Sand Border** | `#e7e2d8` | `border-[#e7e2d8]` | Bordures structurelles de séparation et délimitation des cartes plates. | Indispensable pour marquer les divisions de la grille de mise en page. | Secondaire |
+| **Pure White** | `#ffffff` | `bg-white` | Fond des cartes interactives et conteneurs de listes. | Toujours ceindre d'une fine bordure Sand Border `#e7e2d8`. | Secondaire |
+| **Coal Accent** | `#292625` | `text-[#292625]` | Textes courants secondaires et libellés intermédiaires. | Offre un excellent niveau de lisibilité tout en adoucissant le contraste du noir pur. | Secondaire |
 
 ---
 
 ## 2. Typographie et Échelle
 
+*   **Police d'affichage (Display, grands titres) :** **Space Grotesk** ou **Inter** en majuscules extra-bold. Apporte un aspect géométrique moderne, technologique et épuré.
+*   **Police d'élégance (Citations, emphase) :** **Cormorant Garamond** (Google Fonts). Un serif haut de gamme utilisé pour accentuer des passages clés, des chiffres ou des notions d'excellence.
 *   **Police sans-serif (Texte courant, UI) :** **Inter** (Google Fonts). Choisi pour sa neutralité suisse et son excellente lisibilité sur mobile à petite échelle.
 *   **Police à chasse fixe (Données, prompts, variables) :** **JetBrains Mono** (Google Fonts). Choisi pour donner un aspect technique rigoureux "architecte de code".
-*   **Police d'affichage (Display, grands titres) :** **Space Grotesk** (Google Fonts). Apporte un aspect géométrique moderne et technologique.
 
 ### Échelle typographique
 
 | Rôle | Taille (px) | Line-height | Letter-spacing | Token Tailwind | Règle de tracking |
 |---|---|---|---|---|---|
 | **H1 Hero** | `48px` - `60px` | `1.1` | `-0.02em` | `text-4xl md:text-5xl xl:text-6xl` | Serré pour garder de l'impact visuel en display. |
-| **H2 Section** | `30px` - `36px` | `1.2` | `-0.01em` | `text-3xl md:text-4xl` | Moyen pour conserver la clarté structurelle. |
-| **Body Long** | `15px` - `16px` | `1.6` | `0` | `text-slate-600 text-sm md:text-base` | Neutre pour maximiser l'effort de lecture prolongée. |
+| **H2 Section** | `30px` - `48px` | `1.2` | `-0.01em` | `text-3xl md:text-5xl` | Moyen pour conserver la clarté structurelle. |
+| **Body Long** | `14px` - `15px` | `1.6` | `0` | `text-xs md:text-sm text-slate-700` | Neutre pour maximiser l'effort de lecture prolongée. |
 | **Code Block** | `12px` - `13px` | `1.5` | `0` | `font-mono text-xs` | Alignement rigoureux des colonnes. |
-| **Caption / Label**| `11px` | `1.4` | `0.05em` | `text-[11px] uppercase tracking-wider` | Espacé pour rester lisible malgré la petite taille. |
+| **Caption / Label**| `10px` | `1.4` | `0.15em` | `text-[10px] uppercase tracking-widest` | Très espacé pour rester parfaitement lisible malgré la petite taille. |
 
 ---
 
 ## 3. Espacement & Layout
 
 *   **Unité de base :** `4px` (système de grille à base de 4, 8, 12, 16, 24, 32, 48, 64px).
-*   **Densité :** Épuré / confortable. La priorité est accordée au vide sémantique pour aérer l'œil et guider le regard du recruteur vers les points clés.
-*   **Marges de page (Gutter) :** `24px` sur mobile, `48px` sur tablette/desktop.
+*   **Densité :** Épuré / confortable. La priorité est accordée au vide sémantique et aux marges généreuses pour aérer l'œil et guider le regard du recruteur vers les points clés.
+*   **Grille d'Alignement :** Présence d'un quadrillage vectoriel d'alignement fin de couleur `#e7e2d8` en arrière-plan (`grid-pattern`) pour souligner la précision d'assemblage du layout.
 *   **Max-width :** `1280px` (`max-w-7xl mx-auto`).
 
 ---
 
 ## 4. Rayons de Coins (Border Radius)
 
-*   **Boutons (Buttons) :** `8px` (`rounded-lg`) pour un aspect moderne mais structuré.
-*   **Cartes (Cards) :** `16px` (`rounded-2xl`) pour adoucir les angles des grilles d'éléments.
-*   **Badges :** `9999px` (`rounded-full`) pour contraster avec la géométrie des cartes.
+*   **Boutons (Buttons) :** `0px` (`rounded-none`) pour un aspect éditorial extrêmement haut de gamme et affûté.
+*   **Cartes (Cards) :** `0px` (`rounded-none`) avec des angles vifs "flat sharp" caractéristiques d'un minimalisme rigoureux.
+*   **Badges :** `0px` (`rounded-none`) afin d'interdire tout arrondi intempestif et maintenir une unité géométrique absolue.
 
 ---
 
 ## 5. Composants UI Spécifications
 
-### Bouton d'Action Primaire
+### Bouton d'Action Plat "Sharp"
 *   **Rôle :** CTA majeur (Contact, Ouvrir étude de cas).
-*   **Background :** `bg-indigo-600`
-*   **Texte :** Blanc, Inter demi-gras (`font-semibold`), taille 12px, majuscules tracking-wider.
+*   **Background :** `bg-[#181615]` (charcoal profond) ou contour `border border-[#181615]`.
+*   **Texte :** Blanc (ou noir), Inter gras (`font-extrabold`), taille 10px, majuscules tracking-widest.
 *   **Padding :** 16px haut/bas, 32px gauche/droite.
+*   **Bordure :** Angles vifs (`rounded-none`).
 *   **États :**
-    *   *Default :* Plat sans ombre excessive.
-    *   *Hover :* Devient plus foncé (`bg-indigo-700`) avec une légère ombre portée d'accentuation.
-    *   *Focus-visible :* Outline indigo 2px avec un offset de 4px.
+    *   *Default :* Plat sans ombre excessive, angles parfaits.
+    *   *Hover :* Devient orange vif (`bg-[#ea580c]`) ou s'inverse avec un contraste fort.
+    *   *Focus-visible :* Outline noir de 2px.
     *   *Disabled :* Devient gris clair (`bg-slate-300`), curseur non autorisé.
 
 ---
 
 ## 6. Logo & Wordmark
 
-*   **Concept :** Un mot-clé graphique associant une icône de cerveau géométrique (sémantique IA/Cognition) au nom propre de Horacio.
-*   **Règles d'usage :** Le wordmark doit toujours être écrit avec un contraste fort (noir sur fond blanc, ou blanc sur fond noir scrolled) en capitales demi-grasses.
+*   **Concept :** Un monogramme de haute précision graphique associant les initiales `H.C` de Horacio Chinkoun avec un point d'emphase coloré orange `.` qui fait office de signature.
+*   **Règles d'usage :** Le mot-clé graphique doit toujours être écrit avec un contraste fort (noir sur fond blanc ou crème, ou blanc sur fond noir) en capitales extra-grasses sans empattement.
 
 ---
 
 ## 7. Iconographie
 
 *   **Style :** Tracé fin minimaliste (Lucide Icons).
-*   **Stroke :** `2px` ou `1.5px` pour rester fin et équilibré avec la police Inter.
+*   **Stroke :** `1.5px` pour rester fin et équilibré avec la police Inter.
 *   **Tailles :** `16px` (UI courante), `24px` (titres et en-têtes de cartes).
 
 ---
 
 ## 8. Surfaces & Élévation Responsive
 
-Pour éviter l'empilement visuel agressif (clutter) sur mobile :
-*   Sur viewport étroit (mobile), toutes les cartes appliquent un style à **fond plat** (`bg-slate-50`) et suppriment les ombres d'élévation complexes (`shadow-none`).
-*   Sur desktop, l'élévation s'active au survol des cartes (`hover:shadow-lg hover:bg-white`) pour donner un sentiment de profondeur et d'interactivité.
+Pour éviter l'empilement visuel agressif (clutter) :
+*   Aucune ombre d'élévation classique n'est tolérée dans le système. La profondeur est créée par des variations de fonds (`#faf8f5` vs `#ffffff` vs `#181615`) et des bordures de structure nettes (`#e7e2d8`).
+*   Au survol, une carte change de couleur de bordure (`hover:border-[#181615]`) au lieu d'afficher une ombre, garantissant un comportement moderne et cohérent.
 
 ---
 
 ## 9. Imagerie & Formes
 
-*   Toutes les formes décoratives doivent être des **dégradés vectoriels flous** légers à faible opacité (10% à 20%) pour ne pas gêner la lisibilité du texte.
-*   Interdiction de décorer avec des captures d'écran fictives ou des illustrations d'IA génératives criardes de type "cyberpunk". Préférer des mockups d'interfaces de code réalistes et épurées.
+*   Cadres portraits "Framed": Le portrait d'en-tête de Horacio Chinkoun est inséré dans un double cadre asymétrique décalé, soulignant l'esthétique "galerie d'art / édition imprimée".
+*   Interdiction de décorer avec des captures d'écran fictives ou des illustrations d'IA génératives criardes de type "cyberpunk". Préférer des captures haute-fidélité réelles de l'application Nukemap 3D.
 
 ---
 
 ## 10. Do's & Don'ts (7 + 7)
 
 ### ✅ Do's (À faire absolument)
-1.  **Garantir un espace vide généreux :** Toujours conserver des paddings d'au moins `py-24` entre les sections majeures.
-2.  **Spécifier clairement le statut prototype :** Toujours afficher la mention *"non déployé"* de façon visible.
+1.  **Garantir des angles vifs rigoureux :** Utiliser exclusivement des bordures `rounded-none` pour l'ensemble des éléments interactifs et structurels.
+2.  **Afficher des grilles d'alignement :** Garder le motif de grille vectorielle de fond `#e7e2d8` visible pour marquer le travail d'architecte.
 3.  **Utiliser le mono pour les détails techniques :** Toujours formater les noms de fichiers et variables techniques en JetBrains Mono.
-4.  **Assurer la lisibilité des prompts :** Toujours présenter les exemples de prompts dans des boîtes de code sombres rétro-éclairées de vert ou d'indigo.
-5.  **Utiliser des libellés sémantiques clairs :** Préférer des termes humbles et humains plutôt que du jargon publicitaire creux.
+4.  **Assurer la lisibilité des prompts :** Toujours présenter les exemples de prompts dans des boîtes de code sombres rétro-éclairées de vert ou d'orange.
+5.  **Maintenir l'esthétique du double cadre :** Présenter les visuels clés de Horacio avec un double cadre de décalage asymétrique.
 6.  **Optimiser pour le tactile mobile :** Conserver des cibles tactiles de boutons de 44px de hauteur sur mobile.
 7.  **Harmoniser les icônes :** Utiliser exclusivement le pack Lucide avec la même épaisseur de trait.
 
-### ❌ Don'ts (À ne jamais faire)
-1.  **Ne jamais inventer de fausses métriques :** Interdiction absolue de mettre des graphiques d'utilisateurs ou de faux volumes d'abonnés.
-2.  **Ne pas ajouter de barre de pourcentage subjective :** Pas de "React 90%" ou "Python 85%".
-3.  **Ne pas empiler les bordures :** Pas de carte blanche à bordure grise imbriquée dans un conteneur lui-même doté de bordure.
-4.  **Ne pas utiliser de couleurs criardes de néon :** Éviter les dégradés violents vert-rose-jaune typiques des faux portfolios d'IA.
+### ❌ Don't (À ne jamais faire)
+1.  **Ne jamais utiliser d'arrondis :** Interdire l'usage de classes comme `rounded-lg`, `rounded-full` ou `rounded-2xl` sur le thème global.
+2.  **Ne pas ajouter d'ombres diffuses :** Bannir les classes `shadow-lg`, `shadow-md` au profit de bordures nettes de contraste.
+3.  **Ne jamais inventer de fausses métriques :** Interdiction absolue de mettre des graphiques d'utilisateurs ou de faux volumes d'abonnés.
+4.  **Ne pas utiliser de couleurs criardes de néon :** Éviter les dégradés violents bleu-violet-rose.
 5.  **Ne pas masquer le rôle de l'IA :** Toujours déclarer explicitement la méthode de copilotage dans la section méthodologie.
 6.  **Ne jamais briser le contraste sur les petits écrans :** Pas de sous-titres gris clair `#cbd5e1` sur fond blanc.
 7.  **Ne pas utiliser de boutons trop petits :** Ne jamais descendre sous 40px de hauteur pour un bouton cliquable de soumission.
@@ -142,6 +143,6 @@ Pour éviter l'empilement visuel agressif (clutter) sur mobile :
 
 *   **Ratio de contraste cible :** Conformité avec la norme WCAG 2.1 niveau AA (ratio d'au moins 4.5:1 pour le texte normal, et 3:1 pour le texte large).
 *   **Vérification des contrastes textuels :**
-    *   Texte Slate 900 (`#0f172a`) sur fond Slate 50 (`#f8fafc`) : **Ratio > 15:1 (Conformité AAA)**.
-    *   Texte Indigo Accent (`#6366f1`) sur fond blanc (`#ffffff`) : **Ratio > 4.6:1 (Conformité AA)**.
+    *   Texte Coal Accent (`#292625`) sur fond Cream Canvas (`#faf8f5`) : **Ratio > 8.5:1 (Conformité AA)**.
+    *   Texte Deep Charcoal (`#181615`) sur fond Cream Canvas (`#faf8f5`) : **Ratio > 14.5:1 (Conformité AAA)**.
 *   **Focus Ring :** Toutes les actions d'ancrage et de boutons comportent un contour d'accessibilité actif lors de la navigation au clavier.

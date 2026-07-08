@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Brain } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   currentRouteType?: 'home' | 'project';
@@ -27,11 +27,10 @@ export default function Navbar({ currentRouteType = 'home' }: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { name: 'Accueil', href: '#accueil' },
-    { name: 'À propos', href: '#apropos' },
-    { name: 'Compétences', href: '#competences' },
-    { name: 'Projets', href: '#projets' },
-    { name: 'Services', href: '#services' },
+    { name: 'Bio', href: '#apropos' },
+    { name: 'Réalisations', href: '#projets' },
+    { name: 'Expertise', href: '#competences' },
+    { name: 'Formations', href: '#services' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -47,17 +46,23 @@ export default function Navbar({ currentRouteType = 'home' }: NavbarProps) {
       id="main-navbar"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled || currentRouteType === 'project'
-          ? 'bg-slate-900/95 text-white shadow-md backdrop-blur-md py-4'
-          : 'bg-transparent text-slate-900 py-6'
+          ? 'bg-[#faf8f5]/95 text-[#181615] border-b border-[#faf8f5]/10 shadow-sm backdrop-blur-md py-4'
+          : 'bg-transparent text-[#181615] py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-        {/* Logo / Wordmark */}
-        <a href={getHref('#accueil')} className="flex items-center space-x-2.5 focus:outline-none" id="nav-logo">
-          <Brain className={`w-6 h-6 ${isScrolled || currentRouteType === 'project' ? 'text-indigo-400' : 'text-indigo-600'}`} />
-          <span className="font-display font-bold tracking-tight text-lg uppercase">
+        {/* Logo / Wordmark - Double Stylized Triangles in Orange */}
+        <a href={getHref('#accueil')} className="flex items-center space-x-3 focus:outline-none" id="nav-logo">
+          <div className="relative w-9 h-9 shrink-0 flex items-center justify-center">
+            {/* Custom stylized 'AD' styled triangles */}
+            <svg viewBox="0 0 40 40" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 34 L18 8 L30 34 Z" fill="#ea580c" />
+              <path d="M16 34 L28 8 L40 34 Z" fill="#f97316" opacity="0.8" />
+            </svg>
+          </div>
+          <span className="font-display font-bold tracking-tight text-base uppercase leading-tight">
             Horacio Chinkoun
-            <span className={`block text-xs font-mono tracking-wider font-medium normal-case ${isScrolled || currentRouteType === 'project' ? 'text-slate-400' : 'text-slate-500'}`}>
+            <span className="block text-[10px] font-mono tracking-wider font-semibold normal-case text-slate-500">
               Orchestrateur IA & PO
             </span>
           </span>
@@ -69,32 +74,27 @@ export default function Navbar({ currentRouteType = 'home' }: NavbarProps) {
             <a
               key={link.name}
               href={getHref(link.href)}
-              className={`font-sans font-medium text-sm transition-colors relative group py-1 ${
-                isScrolled || currentRouteType === 'project' ? 'text-slate-300 hover:text-white' : 'text-slate-700 hover:text-indigo-600'
-              }`}
+              className="font-sans font-medium text-sm transition-colors text-slate-700 hover:text-brand-accent relative group py-1"
             >
               {link.name}
-              <span className={`absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
-                isScrolled || currentRouteType === 'project' ? 'bg-indigo-400' : 'bg-indigo-600'
-              }`} />
+              {link.name === 'Formations' && (
+                <span className="inline-block text-[9px] align-top ml-0.5 text-brand-accent">↗</span>
+              )}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
           <a
             href={getHref('#contact')}
-            className={`font-sans font-semibold text-xs uppercase tracking-wider py-2.5 px-5 rounded-md transition-all ${
-              isScrolled || currentRouteType === 'project'
-                ? 'bg-indigo-500 text-white hover:bg-indigo-600'
-                : 'bg-slate-900 text-white hover:bg-slate-800 shadow-sm'
-            }`}
+            className="font-sans font-bold text-[11px] uppercase tracking-wider py-3 px-6 rounded-none bg-brand-primary text-white hover:bg-[#292625] transition-all shadow-sm"
           >
-            Discuter d'un projet
+            DÉMARRER UN PROJET
           </a>
         </div>
 
-        {/* Mobile Hamburguer Toggle */}
+        {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden focus:outline-none p-1.5 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-inherit"
+          className="md:hidden focus:outline-none p-1.5 rounded-md hover:bg-slate-100 transition-colors text-inherit"
           aria-label="Toggle navigation menu"
           id="mobile-menu-toggle"
         >
@@ -108,7 +108,7 @@ export default function Navbar({ currentRouteType = 'home' }: NavbarProps) {
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`md:hidden fixed top-[76px] left-0 w-full bg-slate-950 text-white border-t border-slate-800/80 transition-all duration-300 ease-in-out ${
+        className={`md:hidden fixed top-[72px] left-0 w-full bg-[#faf8f5] text-[#181615] border-t border-slate-200/80 transition-all duration-300 ease-in-out ${
           isMobileMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible'
         }`}
         id="mobile-nav-drawer"
@@ -119,17 +119,18 @@ export default function Navbar({ currentRouteType = 'home' }: NavbarProps) {
               key={link.name}
               href={getHref(link.href)}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="font-sans font-medium text-lg text-slate-300 hover:text-white py-2 border-b border-slate-900 focus:outline-none"
+              className="font-sans font-semibold text-lg text-slate-800 hover:text-brand-accent py-2 border-b border-slate-200 focus:outline-none"
             >
               {link.name}
+              {link.name === 'Formations' && <span className="text-xs ml-1 text-brand-accent">↗</span>}
             </a>
           ))}
           <a
             href={getHref('#contact')}
             onClick={() => setIsMobileMenuOpen(false)}
-            className="font-sans text-center font-semibold text-sm uppercase tracking-wider py-3 px-6 rounded-md bg-indigo-500 hover:bg-indigo-600 transition-all text-white shadow-md focus:outline-none"
+            className="font-sans text-center font-bold text-xs uppercase tracking-wider py-4 px-6 rounded-none bg-brand-primary hover:bg-[#292625] transition-all text-white shadow-md focus:outline-none"
           >
-            Discuter d'un projet
+            DÉMARRER UN PROJET
           </a>
         </div>
       </div>
