@@ -41,6 +41,7 @@ export const projects: Project[] = [
     technologies: ["React", "Tailwind CSS", "Gemini API", "KaTeX", "LocalStorage"],
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
     iconName: "GraduationCap",
+    iconUrl: "/src/assets/images/prepa_concours_icon_1783542700069.jpg",
     caseStudy: {
       context: "Les bacheliers scientifiques au Bénin font face à un manque criant de ressources adaptées pour préparer les concours extrêmement sélectifs d'entrée aux grandes écoles d'ingénieurs et d'administration (EPAC, ENEAM, ENS...).",
       problem: "Les préparations physiques d'excellence sont centralisées, très coûteuses et inaccessibles pour la majorité des élèves des régions éloignées. De plus, les corrigés papier classiques encouragent le par cœur au détriment de la gymnastique intellectuelle requise.",
@@ -61,7 +62,7 @@ export const projects: Project[] = [
         "Optimisation de la taille des prompts et utilisation du modèle Gemini Flash pour réduire le coût en tokens et maximiser la vitesse de réponse."
       ],
       statusDetail: "Ce projet est un prototype fonctionnel complet à un seul écran (SaaS épuré), conçu pour valider l'impact pédagogique d'un agent de tutorat non-directif.",
-      valueAdded: "Il démontre l'apport inestimable de l'IA pour la démocratisation scolaire sans coûts serveurs prohibitifs, grâce à un traitement décentralisé côté client.",
+      valueAdded: "Il démontre l'apport inestimable de l'IA pour la démocratisation scolaire sans coûts serveurs prohibitive-ment élevés, grâce à un traitement décentralisé côté client.",
       useCases: [
         "Un élève de province s'entraîne sur un problème complexe d'intégrales doubles et le tuteur l'accompagne pas à pas sans jamais le bloquer ni lui donner la solution brute.",
         "Correction interactive d'une démonstration géométrique avec notation guidée selon les critères des concours."
@@ -83,8 +84,21 @@ export const projects: Project[] = [
     category: "Simulation Pédagogique",
     type: "primary",
     technologies: ["React", "Three.js / WebGL", "Tailwind CSS", "KaTeX", "Recharts"],
-    status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
+    status: "Déployé en production (accessible en ligne)",
+    liveUrl: "https://nukemap-3d.vercel.app",
     iconName: "Atom",
+    iconUrl: "/src/assets/images/nukemap_edu_icon_1783542710726.jpg",
+    screenshots: [
+      "/src/assets/images/nukemap_1.png",
+      "/src/assets/images/nukemap_2.png",
+      "/src/assets/images/nukemap_3.png",
+      "/src/assets/images/nukemap_4.png",
+      "/src/assets/images/nukemap_5.png",
+      "/src/assets/images/nukemap_6.png",
+      "/src/assets/images/nukemap_7.png",
+      "/src/assets/images/nukemap_8.png",
+      "/src/assets/images/nukemap_9.png"
+    ],
     caseStudy: {
       context: "La physique nucléaire est l'une des disciplines les plus difficiles à enseigner en raison de la nature invisible des forces et des échelles géographiques ou microscopiques impliquées.",
       problem: "Les logiciels académiques de simulation sont austères et nécessitent de puissantes machines locales. Il n'existait pas d'application web moderne capable de vulgariser visuellement et mathématiquement les lois de la radioactivité et des réactions de fission de manière fluide.",
@@ -129,6 +143,7 @@ export const projects: Project[] = [
     technologies: ["React", "Tailwind CSS", "Gemini API (Speech)", "Web Audio API"],
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
     iconName: "Mic",
+    iconUrl: "/src/assets/images/mock_interview_icon_1783542720942.jpg",
     caseStudy: {
       context: "La réussite d'un entretien d'embauche dépend à 80% de la gestion du stress à l'oral et de la structure de l'argumentation sous la pression des questions du recruteur.",
       problem: "Les séances de simulation d'entretien avec des mentors ou professionnels RH sont rares, coûteuses, et exigent une planification complexe. Les outils basés sur le texte manquent du réalisme nécessaire d'un échange vocal rythmé.",
@@ -162,8 +177,6 @@ export const projects: Project[] = [
       ]
     }
   },
-  
-  // Projets secondaires
   {
     id: "transcribe-translate",
     title: "Transcribe & Translate AI",
@@ -174,7 +187,8 @@ export const projects: Project[] = [
     type: "secondary",
     technologies: ["React", "Tailwind CSS", "Gemini API (Multimodal)", "Web Audio API"],
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
-    iconName: "FileVideo"
+    iconName: "FileVideo",
+    iconUrl: "/src/assets/images/transcribe_translate_icon_1783542734962.jpg"
   },
   {
     id: "aura-studio",
@@ -186,7 +200,8 @@ export const projects: Project[] = [
     type: "secondary",
     technologies: ["React", "Tailwind CSS", "Gemini API (Vision/Text)", "Lucide Icons"],
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
-    iconName: "Sparkles"
+    iconName: "Sparkles",
+    iconUrl: "/src/assets/images/aura_studio_icon_1783542745446.jpg"
   },
   {
     id: "docugen-pro",
@@ -198,7 +213,8 @@ export const projects: Project[] = [
     type: "secondary",
     technologies: ["React", "Tailwind CSS", "Gemini API", "jsPDF / HTML2PDF"],
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
-    iconName: "FileText"
+    iconName: "FileText",
+    iconUrl: "/src/assets/images/docugen_pro_icon_1783542757680.jpg"
   },
   {
     id: "doc2form",
@@ -210,7 +226,8 @@ export const projects: Project[] = [
     type: "secondary",
     technologies: ["React", "Tailwind CSS", "Gemini API", "JSON Schema"],
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
-    iconName: "CheckSquare"
+    iconName: "CheckSquare",
+    iconUrl: "/src/assets/images/doc2form_icon_1783542768567.jpg"
   }
 ];
 

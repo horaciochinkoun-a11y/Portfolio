@@ -11,8 +11,8 @@
 
 ---
 
-## 2. Mockups et Captures d'Écran Absents
+## 2. Intégration Réussie des Captures Réelles (NUKEMAP EDU)
 
-*   **Description :** Les cartes de projets et la fenêtre modale s'appuient sur des icônes vectorielles dynamiques Lucide-React et des structures esthétiques en CSS/Tailwind (gradients flous, fenêtres de simulation) à la place de captures d'écran réelles ou de fichiers d'images de mockups.
-*   **Avantage :** Vitesse de chargement optimale (100% vectoriel, aucun fichier image lourd) et résilience sur les smartphones bas de gamme au Bénin.
-*   **Alternative :** Si l'utilisateur le souhaite à l'avenir, il pourra uploader des fichiers d'images réels dans un dossier `/public/assets` et modifier la source dans `data.ts`.
+*   **Description :** Les captures d'écran réelles haute fidélité fournies par l'utilisateur pour le projet **NUKEMAP EDU** ont été intégrées directement à l'application. Un carrousel de navigation interactif et une bande de vignettes dynamiques permettent d'inspecter l'interface réelle depuis l'étude de cas détaillée.
+*   **Pour les autres projets :** Les autres cartes s'appuient toujours sur des icônes de la bibliothèque premium 3D générées par IA et des icônes Lucide.
+*   **Évolutivité :** L'architecture du portfolio supporte dorénavant de manière native l'injection de listes d'images via le champ `screenshots` de l'interface `Project` pour étendre ce comportement à d'autres projets.

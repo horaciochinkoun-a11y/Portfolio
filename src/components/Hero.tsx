@@ -94,7 +94,14 @@ export default function Hero() {
               
               {/* Human Cadrage Block */}
               <div className="flex items-center space-x-3 bg-slate-50 border border-slate-100 p-3 rounded-lg hover:border-indigo-200 hover:bg-indigo-50/20 transition-all">
-                <div className="w-7 h-7 rounded-full bg-slate-900 text-white font-mono text-xs flex items-center justify-center font-bold">HC</div>
+                <div className="relative w-7 h-7 rounded-full overflow-hidden border border-slate-200 bg-slate-100 flex items-center justify-center shrink-0">
+                  <img
+                    src="/src/assets/images/horacio_avatar_1783542685603.jpg"
+                    alt="HC"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div className="flex-1 min-w-0">
                   <div className="font-sans font-semibold text-xs text-slate-800">Cadrage Fonctionnel Humain</div>
                   <div className="font-mono text-[10px] text-slate-500 truncate">specs, UX wireframes, requirements</div>

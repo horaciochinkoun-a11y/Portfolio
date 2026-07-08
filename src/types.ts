@@ -33,6 +33,8 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   iconName: string; // Used to select Lucide icons dynamically
+  iconUrl?: string; // Real 3D generated icon URL
+  screenshots?: string[]; // Real screenshots of the project
   caseStudy?: CaseStudy;
 }
 

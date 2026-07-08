@@ -3,28 +3,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import * as Icons from 'lucide-react';
 import { projects } from '../data';
 import { Project } from '../types';
-import CaseStudyModal from './CaseStudyModal';
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   // Filter projects by type
   const primaryProjects = projects.filter(p => p.type === 'primary');
   const secondaryProjects = projects.filter(p => p.type === 'secondary');
 
   const openCaseStudy = (project: Project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
-  };
-
-  const closeCaseStudy = () => {
-    setSelectedProject(null);
-    setIsModalOpen(false);
+    window.location.hash = `#/projets/${project.id}`;
   };
 
   // Helper to render dynamic Lucide icons safely
@@ -70,9 +60,18 @@ export default function Projects() {
                 <div>
                   {/* Card Icon & Category */}
                   <div className="flex justify-between items-center mb-6">
-                    <div className="p-3 rounded-xl bg-white border border-slate-200/60 text-indigo-600 shadow-sm group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-all">
-                      {renderIcon(project.iconName, "w-5 h-5")}
-                    </div>
+                    {project.iconUrl ? (
+                      <img
+                        src={project.iconUrl}
+                        alt={`Icône de ${project.title}`}
+                        referrerPolicy="no-referrer"
+                        className="w-12 h-12 rounded-xl object-cover border border-slate-200/60 shadow-sm group-hover:scale-105 transition-transform duration-300 bg-white shrink-0"
+                      />
+                    ) : (
+                      <div className="p-3 rounded-xl bg-white border border-slate-200/60 text-indigo-600 shadow-sm group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-all">
+                        {renderIcon(project.iconName, "w-5 h-5")}
+                      </div>
+                    )}
                     <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400 font-bold">
                       {project.category}
                     </span>
@@ -106,19 +105,40 @@ export default function Projects() {
 
                 {/* Case Study Trigger & Status */}
                 <div className="pt-4 border-t border-slate-200/60 flex flex-col space-y-3.5">
-                  <div className="flex items-center space-x-1.5 text-[10px] font-mono text-slate-500 bg-white border border-slate-200/40 py-1.5 px-3 rounded-lg">
-                    <Icons.AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0" />
-                    <span className="truncate">Prototype (non déployé)</span>
-                  </div>
+                  {project.liveUrl ? (
+                    <div className="flex items-center space-x-1.5 text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-100/50 py-1.5 px-3 rounded-lg">
+                      <Icons.CheckCircle className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                      <span className="truncate font-semibold">Déployé en production</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center space-x-1.5 text-[10px] font-mono text-slate-500 bg-white border border-slate-200/40 py-1.5 px-3 rounded-lg">
+                      <Icons.AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+                      <span className="truncate">Prototype (non déployé)</span>
+                    </div>
+                  )}
                   
-                  <button
-                    onClick={() => openCaseStudy(project)}
-                    className="font-sans text-center font-bold text-xs uppercase tracking-wider py-3 px-6 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white transition-all shadow-sm flex items-center justify-center space-x-2 cursor-pointer focus:outline-none"
-                    id={`view-study-${project.id}`}
-                  >
-                    <span>Découvrir l'étude</span>
-                    <Icons.ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                  <div className="grid grid-cols-1 sm:grid-cols-12 gap-2">
+                    <button
+                      onClick={() => openCaseStudy(project)}
+                      className={`font-sans text-center font-bold text-xs uppercase tracking-wider py-3 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white transition-all shadow-sm flex items-center justify-center space-x-2 cursor-pointer focus:outline-none ${project.liveUrl ? 'sm:col-span-8' : 'w-full sm:col-span-12'}`}
+                      id={`view-study-${project.id}`}
+                    >
+                      <span>Découvrir l'étude</span>
+                      <Icons.ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-sans text-center font-bold text-xs uppercase tracking-wider py-3 px-4 rounded-lg border border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50/20 text-indigo-700 transition-all shadow-xs flex items-center justify-center space-x-1.5 cursor-pointer focus:outline-none sm:col-span-4"
+                        id={`live-link-${project.id}`}
+                      >
+                        <span>Live</span>
+                        <Icons.ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
                 </div>
 
               </div>
@@ -145,10 +165,19 @@ export default function Projects() {
                 id={`secondary-card-${project.id}`}
               >
                 <div>
-                  <div className="flex items-center space-x-2.5 mb-4">
-                    <div className="p-2 rounded-lg bg-white border border-slate-200 text-slate-700">
-                      {renderIcon(project.iconName, "w-4 h-4")}
-                    </div>
+                  <div className="flex items-center space-x-3 mb-4">
+                    {project.iconUrl ? (
+                      <img
+                        src={project.iconUrl}
+                        alt={`Icône de ${project.title}`}
+                        referrerPolicy="no-referrer"
+                        className="w-9 h-9 rounded-lg object-cover border border-slate-200/50 shadow-xs bg-white shrink-0"
+                      />
+                    ) : (
+                      <div className="p-2 rounded-lg bg-white border border-slate-200 text-slate-700">
+                        {renderIcon(project.iconName, "w-4 h-4")}
+                      </div>
+                    )}
                     <h4 className="font-display font-bold text-sm text-slate-900 truncate">
                       {project.title}
                     </h4>
@@ -177,13 +206,6 @@ export default function Projects() {
         </div>
 
       </div>
-
-      {/* Case Study Modal Injection */}
-      <CaseStudyModal
-        project={selectedProject}
-        isOpen={isModalOpen}
-        onClose={closeCaseStudy}
-      />
     </section>
   );
 }

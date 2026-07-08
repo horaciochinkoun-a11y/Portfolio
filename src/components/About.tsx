@@ -61,9 +61,14 @@ export default function About() {
           <div className="lg:col-span-5 flex flex-col items-center">
             <div className="w-full max-w-[340px] bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm text-center relative overflow-hidden group">
               
-              {/* Profile Image/Avatar Initials Case */}
-              <div className="w-24 h-24 rounded-full bg-slate-900 text-white flex items-center justify-center text-3xl font-display font-bold mx-auto mb-6 shadow-md transition-transform duration-500 group-hover:scale-105">
-                HC
+              {/* Profile Image/Avatar */}
+              <div className="relative w-24 h-24 rounded-full overflow-hidden mx-auto mb-6 shadow-md border border-slate-200 transition-transform duration-500 group-hover:scale-105 bg-slate-100 flex items-center justify-center">
+                <img
+                  src="/src/assets/images/horacio_avatar_1783542685603.jpg"
+                  alt="Horacio Chinkoun"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               <h3 className="font-display font-bold text-lg text-slate-900">
