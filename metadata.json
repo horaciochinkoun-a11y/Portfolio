@@ -1,0 +1,8 @@
+{
+  "name": "Portfolio Horacio Chinkoun",
+  "description": "Portfolio statique d'Architecte Fonctionnel et Orchestrateur de Produits IA",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
