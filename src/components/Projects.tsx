@@ -5,10 +5,15 @@
 
 import React from 'react';
 import * as Icons from 'lucide-react';
-import { projects } from '../data';
+import { projects as defaultProjects } from '../data';
 import { Project } from '../types';
 
-export default function Projects() {
+interface ProjectsProps {
+  projectsList?: Project[];
+}
+
+export default function Projects({ projectsList = defaultProjects }: ProjectsProps) {
+  const projects = projectsList;
   // Filter projects by type
   const primaryProjects = projects.filter(p => p.type === 'primary');
   const secondaryProjects = projects.filter(p => p.type === 'secondary');

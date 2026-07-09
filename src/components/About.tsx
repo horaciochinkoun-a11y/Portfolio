@@ -55,7 +55,25 @@ const GeminiIcon = () => (
   </svg>
 );
 
-export default function About() {
+interface AboutProps {
+  content?: {
+    aboutHeading?: string;
+    aboutTitle?: string;
+    aboutSub?: string;
+    aboutText1?: string;
+    aboutText2?: string;
+    aboutQuote?: string;
+  } | null;
+}
+
+export default function About({ content }: AboutProps) {
+  const aboutHeadingText = content?.aboutHeading || "PRÉSENTATION & PHILOSOPHIE";
+  const aboutTitleText = content?.aboutTitle || "À l'intersection de l'ingénierie rigoureuse et de la stratégie d'impact.";
+  const aboutSubText = content?.aboutSub || "Bâtir des prototypes d'excellence qui durent.";
+  const aboutText1Text = content?.aboutText1 || "Je conçois des produits numériques propulsés par l'intelligence artificielle, en assurant la direction stratégique complète : cadrage fonctionnel, définition de l'expérience utilisateur, direction artistique et pilotage d'agents IA autonomes pour la réalisation technique.";
+  const aboutText2Text = content?.aboutText2 || "Mon rôle n'est pas celui d'un développeur traditionnel qui écrit chaque ligne de code manuellement, mais celui d'un directeur de produit exigeant. Je structure le besoin, rédige des spécifications ultra-précises, orchestre les choix techniques, et valide rigoureusement chaque écran. Cette approche hybride me permet d'obtenir des prototypes complets, documentés et performants en un temps record.";
+  const aboutQuoteText = content?.aboutQuote || "Dans le contexte de connectivité fluctuante d'Afrique de l'Ouest, je mets un point d'honneur à concevoir des architectures sobres : traitement local au maximum (client-side), optimisation de bande passante et formats d'échange ultra-légers.";
+
   return (
     <section id="apropos" className="py-24 bg-[#faf8f5] grid-pattern border-t border-[#e7e2d8]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -63,13 +81,13 @@ export default function About() {
         {/* Section Header */}
         <div className="mb-16" id="about-heading">
           <span className="font-mono text-[10px] uppercase tracking-widest text-brand-accent font-bold block mb-3">
-            PRÉSENTATION & PHILOSOPHIE
+            {aboutHeadingText}
           </span>
           <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-[#181615] tracking-tight leading-[1.1] max-w-4xl">
-            À l'intersection de <span className="font-serif italic font-normal text-brand-accent">l'ingénierie rigoureuse</span> et de la <span className="font-serif italic font-normal text-brand-accent">stratégie d'impact</span>.
+            {aboutTitleText}
           </h2>
         </div>
-
+ 
         {/* Biography & Stack Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16" id="about-biography">
           
@@ -80,24 +98,24 @@ export default function About() {
                 LE CHEMINEMENT
               </span>
               <h3 className="font-sans font-extrabold text-2xl text-[#181615] tracking-tight">
-                Bâtir des prototypes d'excellence qui durent.
+                {aboutSubText}
               </h3>
               
               <div className="space-y-4 text-sm text-[#292625]/85 leading-relaxed">
                 <p>
-                  Je conçois des produits numériques propulsés par l'intelligence artificielle, en assurant la direction stratégique complète : <strong className="font-semibold text-brand-primary">cadrage fonctionnel</strong>, <strong className="font-semibold text-brand-primary">définition de l'expérience utilisateur</strong>, <strong className="font-semibold text-brand-primary">direction artistique</strong> et <strong className="font-semibold text-brand-primary">pilotage d'agents IA autonomes</strong> pour la réalisation technique.
+                  {aboutText1Text}
                 </p>
                 <p>
-                  Mon rôle n'est pas celui d'un développeur traditionnel qui écrit chaque ligne de code manuellement, mais celui d'un directeur de produit exigeant. Je structure le besoin, rédige des spécifications ultra-précises, orchestre les choix techniques, et valide rigoureusement chaque écran. Cette approche hybride me permet d'obtenir des prototypes complets, documentés et performants en un temps record.
+                  {aboutText2Text}
                 </p>
               </div>
             </div>
-
+ 
             {/* West African constraint card inside biography */}
             <div className="mt-8 pt-6 border-t border-[#e7e2d8] flex items-start space-x-3">
               <span className="text-xl text-brand-accent font-serif font-bold">“</span>
               <p className="font-sans text-xs text-[#292625]/85 italic leading-relaxed">
-                Dans le contexte de connectivité fluctuante d'Afrique de l'Ouest, je mets un point d'honneur à concevoir des architectures sobres : traitement local au maximum (client-side), optimisation de bande passante et formats d'échange ultra-légers.
+                {aboutQuoteText}
               </p>
             </div>
           </div>

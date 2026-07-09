@@ -5,9 +5,32 @@
 
 import React from 'react';
 import { ClipboardCopy, Cpu, HelpCircle, Layers, FileText, Ban } from 'lucide-react';
-import { services } from '../data';
+import { services as defaultServices } from '../data';
 
-export default function Services() {
+interface ServicesProps {
+  content?: {
+    services?: Array<{
+      id: string;
+      title: string;
+      description: string;
+      forWhom: string;
+      details: string[];
+    }>;
+    exclusions?: Array<{
+      title: string;
+      text: string;
+    }>;
+  } | null;
+}
+
+export default function Services({ content }: ServicesProps) {
+  const servicesList = content?.services || defaultServices;
+  const exclusionsList = content?.exclusions || [
+    { title: "Le code lourd from scratch", text: "Je ne vends pas d'heures de programmation manuelle de bas niveau." },
+    { title: "La cybersécurité certifiée", text: "Je n'audite pas la sécurité réseau ou système (cryptographie)." },
+    { title: "La conformité légale pure", text: "Je dessine des schémas d'utilisabilité RGPD, pas des contrats légaux certifiés." }
+  ];
+
   // Helper to map services to icons
   const getIcon = (id: string, className = "w-5 h-5") => {
     switch (id) {
@@ -43,7 +66,7 @@ export default function Services() {
 
         {/* Services Grid (2x2) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" id="services-grid">
-          {services.map((service) => (
+          {servicesList.map((service) => (
             <div
               key={service.id}
               className="bg-white border border-[#e7e2d8] p-8 rounded-none shadow-xs hover:border-[#181615] transition-all duration-300 flex flex-col justify-between"
@@ -110,15 +133,11 @@ export default function Services() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 text-[11px] font-sans text-slate-600">
-                <div className="bg-[#faf8f5] p-3 border border-[#e7e2d8]">
-                  <strong className="text-brand-primary">Le code lourd from scratch :</strong> Je ne vends pas d'heures de programmation manuelle de bas niveau.
-                </div>
-                <div className="bg-[#faf8f5] p-3 border border-[#e7e2d8]">
-                  <strong className="text-brand-primary">La cybersécurité certifiée :</strong> Je n'audite pas la sécurité réseau ou système (cryptographie).
-                </div>
-                <div className="bg-[#faf8f5] p-3 border border-[#e7e2d8]">
-                  <strong className="text-brand-primary">La conformité légale pure :</strong> Je dessine des schémas d'utilisabilité RGPD, pas des contrats légaux certifiés.
-                </div>
+                {exclusionsList.map((exc, idx) => (
+                  <div key={idx} className="bg-[#faf8f5] p-3 border border-[#e7e2d8]">
+                    <strong className="text-brand-primary">{exc.title} :</strong> {exc.text}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

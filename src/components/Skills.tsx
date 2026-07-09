@@ -5,12 +5,24 @@
 
 import React from 'react';
 import { ShieldAlert, Cpu, CheckCircle } from 'lucide-react';
-import { skills } from '../data';
+import { skills as defaultSkills } from '../data';
 
-export default function Skills() {
+interface SkillsProps {
+  content?: {
+    skills?: Array<{
+      name: string;
+      category: 'direct' | 'tech';
+      description: string;
+    }>;
+  } | null;
+}
+
+export default function Skills({ content }: SkillsProps) {
+  const skillsList = content?.skills || defaultSkills;
+
   // Filter skills into categories
-  const leadershipSkills = skills.filter(s => s.category === 'direct');
-  const techSkills = skills.filter(s => s.category === 'tech');
+  const leadershipSkills = skillsList.filter(s => s.category === 'direct');
+  const techSkills = skillsList.filter(s => s.category === 'tech');
 
   return (
     <section id="competences" className="py-24 bg-[#faf8f5] grid-pattern border-b border-[#e7e2d8]">

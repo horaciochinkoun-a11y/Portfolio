@@ -43,3 +43,11 @@ Horacio Chinkoun est un Product Owner et Concepteur produit spécialisé dans l'
     *   Absence de bibliothèques tierces massives de rendu ou de frameworks 3D lourds non optimisés. Temps de chargement initial inférieur à 1.5s sur réseau standard.
 *   **ENF-04 : Zéro serveurs de calcul pour les démos**
     *   La logique complexe s'exécute côté client (utilisation d'APIs tierces asynchrones s'il y a lieu, ou mock local propre).
+
+## Spécification du Panel d'Administration (Portfolio)
+- **Authentification** : Email / Mot de passe (1 seul administrateur).
+- **Dashboard** : Vue d'ensemble (nouveaux messages, nombre de projets).
+- **Gestion des contenus** : Édition des sections statiques (Hero, À propos, Compétences, Services).
+- **Projets** : Ajout, modification, suppression (avec confirmation), gestion des images, aperçu.
+- **Messages** : Boîte de réception intégrée au panel pour lire les messages du formulaire de contact.
+- **Responsive** : Interface 100% adaptée aux mobiles.

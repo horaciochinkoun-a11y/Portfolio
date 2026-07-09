@@ -29,11 +29,12 @@
 │   │   ├── Hero.tsx           # Bannière de présentation d'en-tête
 │   │   ├── About.tsx          # Biographie et étapes de méthodologie
 │   │   ├── Skills.tsx         # Cartographie des expertises
-│   │   ├── Projects.tsx       # Grille des réalisations avec triggers
-│   │   ├── CaseStudyModal.tsx # Rendu d'étude de cas détaillée
+│   │   ├── Projects.tsx       # Grille des réalisations avec liens vers études de cas
+│   │   ├── CaseStudyPage.tsx  # Vue de pleine page pour une étude de cas détaillée
 │   │   ├── Services.tsx       # Offres de prestations et exclusions
 │   │   ├── Contact.tsx        # Formulaire d'envoi et coordonnées
-│   │   └── Footer.tsx         # Pied de page sémantique
+│   │   ├── Footer.tsx         # Pied de page sémantique
+│   │   └── FloatingWhatsApp.tsx # Bouton de contact WhatsApp flottant
 │   ├── App.tsx                # Composant racine orchestrant le flux
 │   ├── data.ts                # Base de données de contenu sémantique
 │   ├── types.ts               # Définitions de types et interfaces TypeScript
@@ -59,7 +60,7 @@
 *   **Qui l'utilise :** `/src/components/About.tsx`, `/src/components/Skills.tsx`, `/src/components/Projects.tsx`, `/src/components/Services.tsx`.
 *   **Ce qui casse s'il disparaît :** L'application n'affiche plus aucune donnée, laissant l'interface vide.
 
-### `/src/components/CaseStudyModal.tsx`
-*   **Pourquoi il existe :** Il affiche de manière élégante et immersive les analyses techniques de Horacio (dont les prompts système d'IA).
-*   **Qui l'utilise :** `/src/components/Projects.tsx` qui l'instancie dynamiquement au clic de l'utilisateur.
+### `/src/components/CaseStudyPage.tsx`
+*   **Pourquoi il existe :** Il affiche de manière élégante et immersive les analyses techniques de Horacio, en prenant l'intégralité de la page (système de routage via hash).
+*   **Qui l'utilise :** `App.tsx` l'affiche dynamiquement selon la route actuelle (`#/projets/:id`).
 *   **Ce qui casse s'il disparaît :** Les recruteurs ne peuvent plus lire les études de cas détaillées des projets phares.

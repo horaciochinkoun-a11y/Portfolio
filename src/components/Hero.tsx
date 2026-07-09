@@ -6,11 +6,25 @@
 import React from 'react';
 import { ArrowDown, MessageSquare, Briefcase, Sparkles } from 'lucide-react';
 
-export default function Hero() {
+interface HeroProps {
+  content?: {
+    availability?: string;
+    heroTitle?: string;
+    heroSub?: string;
+    heroNotice?: string;
+  } | null;
+}
+
+export default function Hero({ content }: HeroProps) {
+  const availabilityText = content?.availability || "DISPONIBLE • ORCHESTRATEUR IA & PRODUCT OWNER";
+  const heroTitleText = content?.heroTitle || "Je transforme des idées produit en prototypes IA fonctionnels.";
+  const heroSubText = content?.heroSub || "Architecte fonctionnel & orchestrateur d’IA. Je cadre le besoin, je rédige des spécifications précises, je pilote la réalisation technique par des agents IA, et je valide rigoureusement chaque écran.";
+  const heroNoticeText = content?.heroNotice || "Transparence méthodologique : Je supervise et orchestre la technique via prompt engineering d'élite ; l'IA exécute le code sous ma direction.";
+
   return (
     <section
       id="accueil"
-      className="relative min-h-screen pt-32 pb-20 flex items-center grid-pattern overflow-hidden bg-[#faf8f5]"
+      className="relative min-h-screen pt-32 pb-20 flex items-center grid-pattern overflow-hidden bg-white"
     >
       {/* Soft warm overlays */}
       <div className="absolute top-1/4 right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-accent/5 blur-[120px] pointer-events-none" />
@@ -27,7 +41,7 @@ export default function Hero() {
             id="availability-badge"
           >
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>DISPONIBLE • ORCHESTRATEUR IA & PRODUCT OWNER</span>
+            <span>{availabilityText}</span>
           </div>
 
           {/* Headline H1 with beautiful serif italic keywords */}
@@ -35,7 +49,7 @@ export default function Hero() {
             className="font-sans text-4xl md:text-5xl xl:text-6.5xl font-extrabold text-[#181615] leading-[1.08] tracking-tight"
             id="hero-headline"
           >
-            Je transforme des <span className="font-serif italic font-normal text-brand-accent pr-1">idées produit</span> en <span className="font-serif italic font-normal text-brand-accent">prototypes IA</span> fonctionnels.
+            {heroTitleText}
           </h1>
 
           {/* Sub-headline */}
@@ -43,12 +57,12 @@ export default function Hero() {
             className="font-sans text-base md:text-lg text-[#292625]/85 max-w-xl leading-relaxed font-normal"
             id="hero-subheadline"
           >
-            Architecte fonctionnel & orchestrateur d’IA. Je cadre le besoin, je rédige des spécifications précises, je pilote la réalisation technique par des agents IA, et je valide rigoureusement chaque écran.
+            {heroSubText}
           </p>
 
           <div className="font-mono text-xs text-[#292625]/80 bg-[#f4f1ea]/60 p-4 rounded-none border border-[#e7e2d8] max-w-lg leading-relaxed">
             <Sparkles className="inline-block w-4 h-4 text-brand-accent mr-2 align-text-top" />
-            <strong>Transparence méthodologique :</strong> Je supervise et orchestre la technique via prompt engineering d'élite ; l'IA exécute le code sous ma direction.
+            <span>{heroNoticeText}</span>
           </div>
 
           {/* CTA Group - Sharp flat design */}
@@ -91,44 +105,15 @@ export default function Hero() {
 
         </div>
 
-        {/* Right Side: Framed Portrait exactly like the Aquilas Dev screenshot */}
+        {/* Right Side: Clean Portrait exactly like the Aquilas Dev screenshot */}
         <div className="lg:col-span-5 flex justify-center items-center relative" id="hero-visual">
-          <div className="relative w-full max-w-[380px] aspect-[4/5] p-2">
-            
-            {/* Background Solid Dark Offset Shadow Frame */}
-            <div className="absolute inset-0 bg-[#181615] translate-x-4 translate-y-4 shadow-xl border border-brand-accent/20" />
-
-            {/* Inner frame containing image */}
-            <div className="absolute inset-0 bg-white border-2 border-[#181615] p-2 flex flex-col justify-between overflow-hidden relative z-10">
-              
-              {/* Photo Area */}
-              <div className="relative flex-1 bg-slate-100 overflow-hidden border border-[#181615]">
-                <img
-                  src="/src/assets/images/horacio_avatar_1783542685603.jpg"
-                  alt="Horacio Chinkoun"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover filter grayscale"
-                />
-
-                {/* Angled Sticker Badge "ORCHESTRATEUR IA" */}
-                <div className="absolute top-4 right-4 bg-brand-yellow text-[#181615] font-mono text-[9px] font-bold px-2.5 py-1 uppercase tracking-wider border border-[#181615] shadow-sm transform rotate-2">
-                  ORCHESTRATEUR IA & PO
-                </div>
-
-                {/* Bottom Left Badge "PROTOTYPES IA" */}
-                <div className="absolute bottom-4 left-4 bg-white text-[#181615] font-mono text-[9px] font-bold px-2.5 py-1 uppercase tracking-wider border border-[#181615]">
-                  PROTOTYPES IA
-                </div>
-              </div>
-
-              {/* Bottom Custom Overlay Banner block */}
-              <div className="bg-[#181615] text-white p-3.5 mt-2 flex flex-col justify-center items-center text-center space-y-1">
-                <div className="font-mono text-[9px] text-slate-400 uppercase tracking-widest">PRODUIT & CODE • 100%</div>
-                <div className="font-serif italic text-sm text-brand-yellow font-medium">Sur-mesure & orienté conversion</div>
-              </div>
-
-            </div>
-
+          <div className="relative w-full max-w-[420px] aspect-[4/5]">
+            <img
+              src="/src/assets/images/horacio.png"
+              alt="Horacio Chinkoun"
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover grayscale"
+            />
           </div>
         </div>
 

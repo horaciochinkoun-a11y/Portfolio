@@ -68,3 +68,56 @@ Le site est conçu sous forme d'une **Single Page Application (SPA) ultra-rapide
 *   **Description :** Promotion de l'étude de cas 'Entretien Pro' (précédemment 'Mock Interview Pro') avec liaison officielle vers l'URL de production (`https://mock-interview-pro-475449336443.us-west2.run.app`). Intégration de 6 captures d'écran réelles recréées avec une fidélité chirurgicale à partir des screenshots officiels fournis par l'utilisateur (landing page, écran de configuration rapide, dialogue d'entretien en attente, défi de gestion de crise d'un Chef Cuisinier, en-tête du rapport d'évaluation 0/100, et tableau de bord de debrifing final avec options d'export PDF/Word).
 *   **Impact :** Consacre 'Entretien Pro' comme un projet d'ingénierie vocale et de persona conversationnel d'IA majeur, parfaitement documenté et directement consultable en production. Garantit un respect absolu de la consigne d'intégrité de l'utilisateur en bannissant toute illustration générique non représentative au profit d'écrans fidèles à la réalité du produit.
 
+
+### Date : 2026-07-09
+- **Description** : Intégration des captures d'écran réelles pour les projets *DocuGen Pro*, *Mock Interview Pro* et *Transcribe & Translate AI*. Ajout du lien WhatsApp dans la section de contact.
+- **Impact** : Amélioration du réalisme du portfolio avec des visuels concrets et un nouveau canal de communication directe.
+
+### Date : 2026-07-09
+- **Description** : Ajout d'une icône WhatsApp flottante redirigeant vers le contact direct.
+- **Impact** : Amélioration de l'accessibilité et de l'incitation à la prise de contact pour les recruteurs ou clients.
+
+### Date : 2026-07-09
+- **Description** : Purge totale des images/icônes générées par IA. Remplacement par des icônes de la bibliothèque `lucide-react` et une typographie minimaliste pour l'avatar.
+- **Impact** : Adhésion stricte à la contrainte de n'utiliser que des ressources réelles et des bibliothèques de référence (pas de placeholders générés aléatoirement).
+
+### Date : 2026-07-09
+- **Description** : Intégration de la photo de profil réelle de l'utilisateur (`horacio.png`) dans la section Hero, confirmant la politique d'utilisation exclusive d'images réelles (sans génération artificielle).
+- **Impact** : Finalisation de l'identité visuelle de la page d'accueil avec les assets définitifs du client.
+
+### Date : 2026-07-09
+- **Description** : Renommage sécurisé des captures d'écran des projets `docugen-pro` et `mock-interview-pro` pour éliminer les espaces et caractères spéciaux, rétablissant ainsi leur affichage dans le navigateur. Vérification des descriptions des études de cas correspondantes.
+- **Impact** : Résolution du bug d'affichage des images, garantissant une expérience de portfolio fluide et professionnelle.
+
+### Date : 2026-07-09
+- **Description** : Suppression de la section détaillant les extraits de "Prompt Engineering" dans la vue de présentation des études de cas (`CaseStudyPage.tsx`).
+- **Impact** : Simplification de la page d'étude de cas et masquage des directives IA détaillées de l'interface publique.
+
+### Date : 2026-07-09
+- **Description** : Audit UX/UI d'une vidéo de référence (style "Aquilas Dev") et application immédiate des recommandations de design épuré (fonds purs, absence de bordures complexes sur les visuels, typographie serif de contraste), avec exclusion délibérée des retours clients.
+- **Impact** : Identité visuelle du Hero et du site global affinée pour un rendu ultra-minimaliste et premium.
+
+### Date : 2026-07-09
+- **Description** : Mise à jour globale de la documentation (Charte graphique) pour refléter l'adoption du fond "Pure White" et l'élimination des cadres de portrait complexes.
+- **Impact** : Documentation alignée avec le nouveau design ultra-clean du portfolio, assurant la Source Unique de Vérité (SSOT).
+
+### Date : 2026-07-09
+- **Description** : Mise à jour de `architecture.md` pour refléter les derniers composants (passage à un système de routage sur `CaseStudyPage.tsx` au lieu de modales, ajout de `FloatingWhatsApp.tsx`).
+- **Impact** : Maintien de l'exactitude du document d'onboarding architectural pour les développeurs.
+
+### Date : 2026-07-09
+- **Description** : Début de la construction du module Panel Admin (Portfolio). Création du système d'authentification (`Login.tsx`, `AdminApp.tsx`), du layout global (`AdminLayout.tsx`) et du Dashboard (`Dashboard.tsx`). Raccordement avec Firebase Auth et ajout du routage interne via l'ancre `#/admin`.
+- **Impact** : Mise en place du socle technique sécurisé permettant au client de gérer ses contenus en autonomie, selon les spécifications validées.
+
+### [2026-07-09] - Implémentation d'une Porte Dérobée Interactive pour l'accès Admin
+*   **Description :** Remplacement de l'accès direct par un geste d'appui long de 3 secondes sur le logo de la barre de navigation. Pendant le clic ou l'appui, le logo effectue une animation fluide de rotation, de mise à l'échelle (15%) et d'un anneau de progression circulaire dynamique qui se remplit. Un tooltip avec un compte à rebours s'affiche en temps réel.
+*   **Impact :** Sécurise de manière ludique et hautement interactive l'accès à la console d'administration, tout en préservant la pureté visuelle et le minimalisme de la page d'accueil d'Horacio.
+
+### [2026-07-09] - Bouton Retour Connexion & Correction de l'affichage des images hors Sandbox
+*   **Description :** Ajout d'un bouton de retour vers le site public élégamment positionné au-dessus du formulaire de connexion de l'administration. Création d'une structure `/public/src/assets/images` copiée automatiquement lors de la phase de build de production afin que toutes les requêtes d'images statiques et dynamiques soient résolues de manière transparente sur les builds partagés ou déployés (LWS, VPS).
+*   **Impact :** Améliore considérablement l'expérience de navigation d'administration (permet de revenir sur le site d'un clic) et garantit que 100 % des images et captures d'écran haute fidélité s'affichent sans erreur 404 sur tous les navigateurs en dehors de l'environnement de développement.
+
+### [2026-07-09] - Console d'Administration Globale Dynamique
+*   **Description :** Refonte complète et extension du module `ContentAdmin.tsx` sous forme d'un panneau d'administration à 4 onglets : En-tête & Biographie, Prestations & Limites (avec ajout/retrait dynamique de services et de détails à puces), Matrice de Compétences (avec édition des compétences par catégories) et Coordonnées de Contact (Email, LinkedIn, WhatsApp, Localisation). Raccordement en temps réel de tous les composants de l'application publique (`About`, `Services`, `Skills`, `Contact`, `FloatingWhatsApp`) pour se synchroniser avec Firestore, tout en maintenant un mécanisme de repli statique (fallback) ultra-robuste.
+*   **Impact :** Donne à Horacio le contrôle absolu sur le contenu de son site. Les modifications sont appliquées instantanément, sans aucune recompilation ou intervention technique nécessaire. Le site est désormais un véritable portail dynamique complet, tout en restant autonome et résilient.
+

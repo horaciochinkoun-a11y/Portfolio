@@ -2,8 +2,8 @@
 > Identité visuelle, règles d'usage typographique, et spécifications des composants UI.
 
 **Version :** 2.0  
-**Thème :** Light Luxury (Warm Cream & Deep Charcoal, accents Warm Orange)  
-**Dernière mise à jour :** 2026-07-08  
+**Thème :** Light Luxury (Pure White & Deep Charcoal, accents Warm Orange)  
+**Dernière mise à jour :** 2026-07-09  
 
 ---
 
@@ -26,7 +26,7 @@
 
 | Nom sémantique | Valeur Hex | Token CSS / Tailwind | Rôle primaire | Restrictions | Niveau d'autorité |
 |---|---|---|---|---|---|
-| **Cream Canvas** | `#faf8f5` | `bg-[#faf8f5]` / `--color-brand-cream` | Arrière-plan global chaleureux et texturé. | Conserver l'aspect grisé avec le pattern de grille d'alignement. | Primaire |
+| **Pure White Background** | `#ffffff` | `bg-white` | Arrière-plan global ultra-clean et épuré. | Conserver l'aspect immaculé avec le pattern de grille d'alignement. | Primaire |
 | **Deep Charcoal** | `#181615` | `bg-[#181615]` / `--color-brand-primary` | Couleur de base des textes, boutons primaires et zones sombres structurantes (Navbar, Footer). | Ne pas diluer son opacité pour les textes importants. | Primaire |
 | **Warm Orange** | `#ea580c` | `text-[#ea580c]` / `--color-brand-accent` | Couleur d'accentuation, boutons secondaires, bordures d'alerte, puces. | Éviter d'utiliser pour les grands blocs de texte continus. | Primaire |
 | **Sand Border** | `#e7e2d8` | `border-[#e7e2d8]` | Bordures structurelles de séparation et délimitation des cartes plates. | Indispensable pour marquer les divisions de la grille de mise en page. | Secondaire |
@@ -112,7 +112,7 @@ Pour éviter l'empilement visuel agressif (clutter) :
 
 ## 9. Imagerie & Formes
 
-*   Cadres portraits "Framed": Le portrait d'en-tête de Horacio Chinkoun est inséré dans un double cadre asymétrique décalé, soulignant l'esthétique "galerie d'art / édition imprimée".
+*   Portrait "Clean": Le portrait d'en-tête de Horacio Chinkoun est inséré sans cadre asymétrique ni double bordure complexes, soulignant une esthétique ultra-minimaliste et épurée.
 *   Interdiction de décorer avec des captures d'écran fictives ou des illustrations d'IA génératives criardes de type "cyberpunk". Préférer des captures haute-fidélité réelles de l'application Nukemap 3D.
 
 ---
@@ -124,7 +124,7 @@ Pour éviter l'empilement visuel agressif (clutter) :
 2.  **Afficher des grilles d'alignement :** Garder le motif de grille vectorielle de fond `#e7e2d8` visible pour marquer le travail d'architecte.
 3.  **Utiliser le mono pour les détails techniques :** Toujours formater les noms de fichiers et variables techniques en JetBrains Mono.
 4.  **Assurer la lisibilité des prompts :** Toujours présenter les exemples de prompts dans des boîtes de code sombres rétro-éclairées de vert ou d'orange.
-5.  **Maintenir l'esthétique du double cadre :** Présenter les visuels clés de Horacio avec un double cadre de décalage asymétrique.
+5.  **Maintenir l'esthétique épurée :** Présenter les visuels clés de Horacio de manière nette et directe, sans superposer de cadres ni d'ombrages asymétriques.
 6.  **Optimiser pour le tactile mobile :** Conserver des cibles tactiles de boutons de 44px de hauteur sur mobile.
 7.  **Harmoniser les icônes :** Utiliser exclusivement le pack Lucide avec la même épaisseur de trait.
 
@@ -143,6 +143,6 @@ Pour éviter l'empilement visuel agressif (clutter) :
 
 *   **Ratio de contraste cible :** Conformité avec la norme WCAG 2.1 niveau AA (ratio d'au moins 4.5:1 pour le texte normal, et 3:1 pour le texte large).
 *   **Vérification des contrastes textuels :**
-    *   Texte Coal Accent (`#292625`) sur fond Cream Canvas (`#faf8f5`) : **Ratio > 8.5:1 (Conformité AA)**.
-    *   Texte Deep Charcoal (`#181615`) sur fond Cream Canvas (`#faf8f5`) : **Ratio > 14.5:1 (Conformité AAA)**.
+    *   Texte Coal Accent (`#292625`) sur fond Pure White (`#ffffff`) : **Ratio > 10.5:1 (Conformité AAA)**.
+    *   Texte Deep Charcoal (`#181615`) sur fond Pure White (`#ffffff`) : **Ratio > 16.5:1 (Conformité AAA)**.
 *   **Focus Ring :** Toutes les actions d'ancrage et de boutons comportent un contour d'accessibilité actif lors de la navigation au clavier.

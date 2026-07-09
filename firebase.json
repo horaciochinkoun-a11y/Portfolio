@@ -1,0 +1,7 @@
+{
+  "firestore": {
+    "database": "ai-studio-portfoliohoracio-9a40e4f5-9a9c-4073-9d5f-c76bedf458a4",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}

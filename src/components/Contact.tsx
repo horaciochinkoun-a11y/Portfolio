@@ -4,9 +4,20 @@
  */
 
 import React, { useState } from 'react';
-import { Mail, Linkedin, MapPin, Send, CheckCircle, Copy } from 'lucide-react';
+import { Mail, Linkedin, MapPin, Send, CheckCircle, Copy, MessageCircle } from 'lucide-react';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
 
-export default function Contact() {
+interface ContactProps {
+  content?: {
+    contactEmail?: string;
+    contactLinkedin?: string;
+    contactWhatsapp?: string;
+    contactLocation?: string;
+  } | null;
+}
+
+export default function Contact({ content }: ContactProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,8 +28,16 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [error, setError] = useState('');
 
-  const emailAddress = "horaciochinkoun@gmail.com";
+  const emailAddress = content?.contactEmail || "horaciochinkoun@gmail.com";
+  const linkedinUrl = content?.contactLinkedin || "https://linkedin.com/in/horacio-chinkoun";
+  const whatsappNumber = content?.contactWhatsapp || "+229 99 06 25 59";
+  const locationText = content?.contactLocation || "Cotonou, Bénin (Remote disponible)";
+
+  // Format clean WhatsApp number (digits only, e.g., '22999062559')
+  const cleanWhatsappNumber = whatsappNumber.replace(/\D/g, '');
+  const whatsappLink = `https://wa.me/${cleanWhatsappNumber}`;
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -26,18 +45,27 @@ export default function Contact() {
     setTimeout(() => setIsCopied(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
     
     setIsSubmitting(true);
+    setError('');
     
-    // Simulate API submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await addDoc(collection(db, 'messages'), {
+        ...formData,
+        read: false,
+        createdAt: serverTimestamp()
+      });
       setIsSuccess(true);
       setFormData({ name: '', email: '', role: 'client', message: '' });
-    }, 1500);
+    } catch (err: any) {
+      console.error(err);
+      setError("Une erreur est survenue lors de l'envoi du message.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -114,12 +142,32 @@ export default function Contact() {
                     Réseaux pro
                   </span>
                   <a
-                    href="https://linkedin.com/in/horacio-chinkoun"
+                    href={linkedinUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="font-sans text-xs text-slate-800 hover:text-brand-accent font-semibold block"
                   >
-                    linkedin.com/in/horacio-chinkoun
+                    {linkedinUrl.replace('https://', '')}
+                  </a>
+                </div>
+              </div>
+
+              {/* WhatsApp Link */}
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-[#faf8f5] border border-[#e7e2d8] text-brand-accent rounded-none shrink-0">
+                  <MessageCircle className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
+                    Messagerie instantanée
+                  </span>
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-sans text-xs text-slate-800 hover:text-brand-accent font-semibold block"
+                  >
+                    {whatsappNumber}
                   </a>
                 </div>
               </div>
@@ -134,7 +182,7 @@ export default function Contact() {
                     Localisation & Mobilité
                   </span>
                   <span className="font-sans text-xs text-slate-800 font-semibold block">
-                    Cotonou, Bénin (Remote disponible)
+                    {locationText}
                   </span>
                 </div>
               </div>

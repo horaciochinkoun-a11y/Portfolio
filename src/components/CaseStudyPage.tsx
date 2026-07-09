@@ -5,6 +5,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { ChevronLeft, Sparkles, AlertCircle, Bookmark, Code, CheckSquare, Layers, Image, ChevronRight, ExternalLink, ArrowRight } from 'lucide-react';
+import * as Icons from 'lucide-react';
 import { Project } from '../types';
 
 interface CaseStudyPageProps {
@@ -51,7 +52,10 @@ export default function CaseStudyPage({ project }: CaseStudyPageProps) {
               />
             ) : (
               <div className="w-16 h-16 rounded-none bg-[#faf8f5] border border-[#e7e2d8] text-brand-accent flex items-center justify-center shrink-0">
-                <Code className="w-8 h-8" />
+                {(() => {
+                  const IconComponent = (Icons as any)[project.iconName] || Icons.Code;
+                  return <IconComponent className="w-8 h-8" />;
+                })()}
               </div>
             )}
             <div>
@@ -203,36 +207,6 @@ export default function CaseStudyPage({ project }: CaseStudyPageProps) {
             </div>
           </div>
         )}
-
-        {/* Prompt Engineering Panel */}
-        <div className="bg-white border border-[#e7e2d8] rounded-none p-6 md:p-8 shadow-xs mb-10 space-y-4">
-          <h3 className="font-sans font-extrabold text-xs text-[#181615] uppercase tracking-wider flex items-center border-b border-[#e7e2d8] pb-2">
-            <Code className="w-4 h-4 text-brand-accent mr-2" />
-            Ingénierie de Prompts & Directives IA
-          </h3>
-          <p className="font-sans text-slate-500 text-xs">
-            Exemple concret d'instruction système rédigée par mes soins pour diriger l'agent de modélisation cognitif et assurer un comportement déterministe conforme aux contraintes d'utilisabilité.
-          </p>
-          
-          {caseStudy.promptEngineering.map((prompt, idx) => (
-            <div key={idx} className="bg-slate-900 rounded-none overflow-hidden border border-slate-800 shadow-md">
-              <div className="bg-slate-800/85 px-4 py-3 border-b border-slate-700/50 flex justify-between items-center">
-                <span className="font-sans font-extrabold text-[11px] text-brand-accent uppercase tracking-wider">
-                  {prompt.title}
-                </span>
-                <span className="font-mono text-[9px] text-slate-400">system_instruction</span>
-              </div>
-              <div className="p-4">
-                <p className="font-sans text-slate-300 text-[11px] mb-3 leading-relaxed italic">
-                  <strong>Contexte d'usage :</strong> {prompt.description}
-                </p>
-                <pre className="bg-slate-950 p-4 rounded-none overflow-x-auto text-[10px] text-emerald-400 font-mono leading-relaxed whitespace-pre-wrap">
-                  {prompt.promptText}
-                </pre>
-              </div>
-            </div>
-          ))}
-        </div>
 
         {/* Challenges & Solutions */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white border border-[#e7e2d8] rounded-none p-6 md:p-8 shadow-xs mb-10">

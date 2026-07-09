@@ -41,7 +41,6 @@ export const projects: Project[] = [
     technologies: ["React", "Tailwind CSS", "Gemini API", "KaTeX", "LocalStorage"],
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
     iconName: "GraduationCap",
-    iconUrl: "/src/assets/images/prepa_concours_icon_1783542700069.jpg",
     caseStudy: {
       context: "Les bacheliers scientifiques au Bénin font face à un manque criant de ressources adaptées pour préparer les concours extrêmement sélectifs d'entrée aux grandes écoles d'ingénieurs et d'administration (EPAC, ENEAM, ENS...).",
       problem: "Les préparations physiques d'excellence sont centralisées, très coûteuses et inaccessibles pour la majorité des élèves des régions éloignées. De plus, les corrigés papier classiques encouragent le par cœur au détriment de la gymnastique intellectuelle requise.",
@@ -87,7 +86,6 @@ export const projects: Project[] = [
     status: "Déployé en production (accessible en ligne)",
     liveUrl: "https://nukemap-3d.vercel.app",
     iconName: "Atom",
-    iconUrl: "/src/assets/images/nukemap_edu_icon_1783542710726.jpg",
     screenshots: [
       "/src/assets/images/nukemap_1.png",
       "/src/assets/images/nukemap_2.png",
@@ -144,14 +142,13 @@ export const projects: Project[] = [
     status: "Déployé en production (accessible en ligne)",
     liveUrl: "https://mock-interview-pro-475449336443.us-west2.run.app",
     iconName: "Mic",
-    iconUrl: "/src/assets/images/mock_interview_icon_1783542720942.jpg",
     screenshots: [
-      "/src/assets/images/Capture d’écran (1091).png",
-      "/src/assets/images/Capture d’écran (1092).png",
-      "/src/assets/images/Capture d’écran (1093).png",
-      "/src/assets/images/Capture d’écran (1094).png",
-      "/src/assets/images/Capture d’écran (1095).png",
-      "/src/assets/images/Capture d’écran (1096).png"
+      "/src/assets/images/mock_1.png",
+      "/src/assets/images/mock_2.png",
+      "/src/assets/images/mock_3.png",
+      "/src/assets/images/mock_4.png",
+      "/src/assets/images/mock_5.png",
+      "/src/assets/images/mock_6.png"
     ],
     caseStudy: {
       context: "La préparation aux entretiens d'embauche pour des postes à haute responsabilité exige des mises en situation intenses et un retour d'expérience objectif immédiat pour corriger la posture et l'argumentation.",
@@ -197,7 +194,13 @@ export const projects: Project[] = [
     technologies: ["React", "Tailwind CSS", "Gemini API (Multimodal)", "Web Audio API"],
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
     iconName: "FileVideo",
-    iconUrl: "/src/assets/images/transcribe_translate_icon_1783542734962.jpg"
+    screenshots: [
+      "/src/assets/images/1.png",
+      "/src/assets/images/2.png",
+      "/src/assets/images/3.png",
+      "/src/assets/images/4.png",
+      "/src/assets/images/5.png"
+    ]
   },
   {
     id: "aura-studio",
@@ -210,7 +213,6 @@ export const projects: Project[] = [
     technologies: ["React", "Tailwind CSS", "Gemini API (Vision/Text)", "Lucide Icons"],
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
     iconName: "Sparkles",
-    iconUrl: "/src/assets/images/aura_studio_icon_1783542745446.jpg"
   },
   {
     id: "docugen-pro",
@@ -224,13 +226,12 @@ export const projects: Project[] = [
     status: "Déployé en production (accessible en ligne)",
     liveUrl: "https://ais-pre-q43ulohc7kvdx6uhwkngzg-145910217857.europe-west3.run.app",
     iconName: "FileText",
-    iconUrl: "/src/assets/images/docugen_pro_icon_1783542757680.jpg",
     screenshots: [
-      "/src/assets/images/Capture d’écran (1022).png",
-      "/src/assets/images/Capture d’écran (1023).png",
-      "/src/assets/images/Capture d’écran (1024).png",
-      "/src/assets/images/Capture d’écran (1025).png",
-      "/src/assets/images/Capture d’écran (1027).png"
+      "/src/assets/images/docugen_1.png",
+      "/src/assets/images/docugen_2.png",
+      "/src/assets/images/docugen_3.png",
+      "/src/assets/images/docugen_4.png",
+      "/src/assets/images/docugen_5.png"
     ],
     caseStudy: {
       context: "Les freelances et prestataires techniques en Afrique de l'Ouest font face à un défi récurrent : valoriser leurs travaux de manière professionnelle et générer des documents de clôture de projet (attestations, résumés, posts sociaux) sans friction.",
@@ -276,7 +277,6 @@ export const projects: Project[] = [
     technologies: ["React", "Tailwind CSS", "Gemini API", "JSON Schema"],
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
     iconName: "CheckSquare",
-    iconUrl: "/src/assets/images/doc2form_icon_1783542768567.jpg"
   }
 ];
 
