@@ -114,7 +114,7 @@ Le site est conçu sous forme d'une **Single Page Application (SPA) ultra-rapide
 *   **Impact :** Sécurise de manière ludique et hautement interactive l'accès à la console d'administration, tout en préservant la pureté visuelle et le minimalisme de la page d'accueil d'Horacio.
 
 ### [2026-07-09] - Bouton Retour Connexion & Correction de l'affichage des images hors Sandbox
-*   **Description :** Ajout d'un bouton de retour vers le site public élégamment positionné au-dessus du formulaire de connexion de l'administration. Création d'une structure `/public/src/assets/images` copiée automatiquement lors de la phase de build de production afin que toutes les requêtes d'images statiques et dynamiques soient résolues de manière transparente sur les builds partagés ou déployés (LWS, VPS).
+*   **Description :** Ajout d'un bouton de retour vers le site public élégamment positionné au-dessus du formulaire de connexion de l'administration. Création d'une structure `/public/images` copiée automatiquement lors de la phase de build de production afin que toutes les requêtes d'images statiques et dynamiques soient résolues de manière transparente sur les builds partagés ou déployés (LWS, VPS).
 *   **Impact :** Améliore considérablement l'expérience de navigation d'administration (permet de revenir sur le site d'un clic) et garantit que 100 % des images et captures d'écran haute fidélité s'affichent sans erreur 404 sur tous les navigateurs en dehors de l'environnement de développement.
 
 ### [2026-07-09] - Console d'Administration Globale Dynamique

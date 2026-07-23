@@ -7,6 +7,52 @@ import React, { useState } from 'react';
 import { Mail, Linkedin, MapPin, Send, CheckCircle, Copy, MessageCircle } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
+import emailjs from '@emailjs/browser';
+
+// Fonction pour jouer un effet sonore élégant de succès via la Web Audio API
+const playSuccessSound = () => {
+  try {
+    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContextClass) return;
+    
+    const ctx = new AudioContextClass();
+    
+    // Première note (Do5 / C5) pour une attaque douce
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+    
+    gain1.gain.setValueAtTime(0.12, ctx.currentTime);
+    gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+    
+    osc1.connect(gain1);
+    gain1.connect(ctx.destination);
+    
+    osc1.start(ctx.currentTime);
+    osc1.stop(ctx.currentTime + 0.15);
+    
+    // Deuxième note (Mi5 / E5), légèrement décalée pour l'effet de carillon ascendant ("ding-ling!")
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(659.25, ctx.currentTime + 0.08); // E5
+    
+    gain2.gain.setValueAtTime(0, ctx.currentTime);
+    gain2.gain.setValueAtTime(0.12, ctx.currentTime + 0.08);
+    gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+    
+    osc2.connect(gain2);
+    gain2.connect(ctx.destination);
+    
+    osc2.start(ctx.currentTime + 0.08);
+    osc2.stop(ctx.currentTime + 0.35);
+  } catch (error) {
+    console.warn("L'effet sonore n'a pas pu être joué :", error);
+  }
+};
 
 interface ContactProps {
   content?: {
@@ -53,12 +99,42 @@ export default function Contact({ content }: ContactProps) {
     setError('');
     
     try {
+      // 1. Enregistrement Firestore (Rapprochement & Console Admin)
       await addDoc(collection(db, 'messages'), {
         ...formData,
         read: false,
         createdAt: serverTimestamp()
       });
+
+      // 2. Notification par email via EmailJS si configuré
+      const serviceId = (import.meta as any).env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = (import.meta as any).env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = (import.meta as any).env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (serviceId && templateId && publicKey) {
+        try {
+          await emailjs.send(
+            serviceId,
+            templateId,
+            {
+              from_name: formData.name,
+              from_email: formData.email,
+              role: formData.role === 'client' ? 'Client (Besoin d\'un cadrage / MVP)' : formData.role === 'recruteur' ? 'Recruteur (Opportunité)' : 'Autre collaboration',
+              message: formData.message,
+              to_name: 'Horacio CHINKOUN',
+            },
+            publicKey
+          );
+        } catch (emailErr) {
+          console.error("Erreur lors de l'envoi d'email via EmailJS:", emailErr);
+          // Ne pas bloquer l'état succès si le message a bien été enregistré dans Firestore
+        }
+      } else {
+        console.warn("Configuration EmailJS manquante. Le message a été enregistré dans l'administration Firestore.");
+      }
+
       setIsSuccess(true);
+      playSuccessSound();
       setFormData({ name: '', email: '', role: 'client', message: '' });
     } catch (err: any) {
       console.error(err);

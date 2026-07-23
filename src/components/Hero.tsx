@@ -109,7 +109,7 @@ export default function Hero({ content }: HeroProps) {
         <div className="lg:col-span-5 flex justify-center items-center relative" id="hero-visual">
           <div className="relative w-full max-w-[420px] aspect-[4/5]">
             <img
-              src="/src/assets/images/horacio.png"
+              src="/images/horacio.png"
               alt="Horacio Chinkoun"
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover grayscale"

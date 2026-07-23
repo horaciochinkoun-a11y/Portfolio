@@ -45,6 +45,6 @@
 - [x] Module "Textes, Prestations, Compétences et Contacts" (ContentAdmin - Édition intégrale et dynamique de la page d'accueil)
 - [x] Porte dérobée interactive (appui long de 3s sur le logo avec animation circulaire et compte à rebours) pour l'accès sécurisé à la console d'administration
 - [x] Ajout d'un bouton de retour vers le site public sur l'écran de connexion administrateur
-- [x] Résolution de l'affichage des images hors du sandbox (recréation de l'arborescence statique dans `/public/src/assets/images`)
+- [x] Résolution de l'affichage des images hors du sandbox (recréation de l'arborescence statique dans `/public/images`)
 - [x] Raccordement dynamique complet de toutes les sections publiques (About, Services, Skills, Contact, FloatingWhatsApp) avec Firestore et fallback statique ultra-robuste
 

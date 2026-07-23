@@ -483,7 +483,7 @@ export default function ProjectsAdmin() {
                   rows={3}
                   value={screenshots}
                   onChange={(e) => setScreenshots(e.target.value)}
-                  placeholder="Ex: /src/assets/images/docugen_1.png, /src/assets/images/docugen_2.png"
+                  placeholder="Ex: /images/docugen_1.png, /images/docugen_2.png"
                   className="w-full bg-[#faf8f5] border border-[#e7e2d8] focus:border-[#181615] focus:ring-0 rounded-none py-3 px-4 text-xs text-slate-800 transition-all focus:outline-none"
                 />
               </div>

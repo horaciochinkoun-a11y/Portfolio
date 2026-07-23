@@ -32,10 +32,10 @@ export default function Footer() {
           {/* Quick legal/tech indicators */}
           <div className="text-center md:text-right space-y-1.5" id="footer-details">
             <p className="font-sans text-xs text-gray-400">
-              &copy; {currentYear} Horacio Chinkoun. Tous droits réservés.
+              &copy; {currentYear} Horacio CHINKOUN. Tous droits réservés.
             </p>
             <p className="font-mono text-[9px] text-[#faf8f5]/40">
-              PROTOTYPE D'EXCELLENCE STATIQUE COMPILES SUR LWS &bull; CONVAINCU PAR LA RIGUEUR
+              CONVAINCU PAR LA RIGUEUR
             </p>
           </div>
 

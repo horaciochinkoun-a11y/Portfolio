@@ -109,4 +109,23 @@
     *   ✔ Fonctionnalité intégrale et immédiate du CRUD Projets, de l'éditeur de copie de marque et de la gestion des messages reçus.
     *   ⚠️ **Note de sécurité :** Lors de la mise en production définitive sur l'hébergement de destination (LWS/VPS), une fois le fournisseur d'authentification par e-mail/mot de passe activé dans la console Firebase par le client, il sera nécessaire de rétablir les restrictions de sécurité authentifiées décrites dans l'ADR-06.
 
+---
+
+## ADR-08 : Durcissement des Règles Firestore de Production face à l'Exposition des Clés Publiques
+
+*   **Date :** 2026-07-10  
+*   **Statut :** Validé  
+*   **Contexte :**  
+    GitHub a détecté la clé API publique de Firebase (`apiKey` commençant par `AIzaSy`) dans le référentiel public de l'utilisateur (`firebase-applet-config.json` et `firebase.ts`) et l'a signalée comme une fuite. Bien que les clés API Firebase soient par nature publiques (destinées à être exposées côté client), elles doivent impérativement être associées à des règles de sécurité Firestore strictes pour éviter tout abus, pillage de base de données ou écriture malveillante.
+*   **Décision :**  
+    Rétablir et déployer des règles de sécurité de production strictes :
+    1.  **messages** : Écritures publiques anonymes autorisées (`allow create: if true;`) pour soumettre des formulaires de contact, mais lectures/mises à jour restreintes aux administrateurs authentifiés (`allow read, update, delete: if request.auth != null;`).
+    2.  **projects** & **content** : Lectures publiques autorisées (`allow read: if true;`) pour afficher le portfolio dynamique, mais écritures réservées aux administrateurs authentifiés (`allow write: if request.auth != null;`).
+    3.  **Default deny** : Tout autre document est inaccessible sauf pour les administrateurs connectés.
+*   **Conséquences :**  
+    *   ✔ La clé API Firebase reste publique et fonctionnelle pour le client-side sans risque de faille de sécurité.
+    *   ✔ Personne ne peut effacer, piller ou manipuler les données d'administration sans s'être d'abord authentifié via Firebase Auth.
+    *   ✔ Les alertes GitHub peuvent être rejetées sereinement comme "faux positifs" ou "utilisé dans du code public".
+
+
 

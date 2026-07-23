@@ -87,15 +87,15 @@ export const projects: Project[] = [
     liveUrl: "https://nukemap-3d.vercel.app",
     iconName: "Atom",
     screenshots: [
-      "/src/assets/images/nukemap_1.png",
-      "/src/assets/images/nukemap_2.png",
-      "/src/assets/images/nukemap_3.png",
-      "/src/assets/images/nukemap_4.png",
-      "/src/assets/images/nukemap_5.png",
-      "/src/assets/images/nukemap_6.png",
-      "/src/assets/images/nukemap_7.png",
-      "/src/assets/images/nukemap_8.png",
-      "/src/assets/images/nukemap_9.png"
+      "/images/nukemap_1.png",
+      "/images/nukemap_2.png",
+      "/images/nukemap_3.png",
+      "/images/nukemap_4.png",
+      "/images/nukemap_5.png",
+      "/images/nukemap_6.png",
+      "/images/nukemap_7.png",
+      "/images/nukemap_8.png",
+      "/images/nukemap_9.png"
     ],
     caseStudy: {
       context: "La physique nucléaire est l'une des disciplines les plus difficiles à enseigner en raison de la nature invisible des forces et des échelles géographiques ou microscopiques impliquées.",
@@ -143,12 +143,12 @@ export const projects: Project[] = [
     liveUrl: "https://mock-interview-pro-475449336443.us-west2.run.app",
     iconName: "Mic",
     screenshots: [
-      "/src/assets/images/mock_1.png",
-      "/src/assets/images/mock_2.png",
-      "/src/assets/images/mock_3.png",
-      "/src/assets/images/mock_4.png",
-      "/src/assets/images/mock_5.png",
-      "/src/assets/images/mock_6.png"
+      "/images/mock_1.png",
+      "/images/mock_2.png",
+      "/images/mock_3.png",
+      "/images/mock_4.png",
+      "/images/mock_5.png",
+      "/images/mock_6.png"
     ],
     caseStudy: {
       context: "La préparation aux entretiens d'embauche pour des postes à haute responsabilité exige des mises en situation intenses et un retour d'expérience objectif immédiat pour corriger la posture et l'argumentation.",
@@ -195,11 +195,11 @@ export const projects: Project[] = [
     status: "Prototype fonctionnel (non déployé, pas d'utilisateurs réels à ce jour)",
     iconName: "FileVideo",
     screenshots: [
-      "/src/assets/images/1.png",
-      "/src/assets/images/2.png",
-      "/src/assets/images/3.png",
-      "/src/assets/images/4.png",
-      "/src/assets/images/5.png"
+      "/images/1.png",
+      "/images/2.png",
+      "/images/3.png",
+      "/images/4.png",
+      "/images/5.png"
     ]
   },
   {
@@ -227,11 +227,11 @@ export const projects: Project[] = [
     liveUrl: "https://ais-pre-q43ulohc7kvdx6uhwkngzg-145910217857.europe-west3.run.app",
     iconName: "FileText",
     screenshots: [
-      "/src/assets/images/docugen_1.png",
-      "/src/assets/images/docugen_2.png",
-      "/src/assets/images/docugen_3.png",
-      "/src/assets/images/docugen_4.png",
-      "/src/assets/images/docugen_5.png"
+      "/images/docugen_1.png",
+      "/images/docugen_2.png",
+      "/images/docugen_3.png",
+      "/images/docugen_4.png",
+      "/images/docugen_5.png"
     ],
     caseStudy: {
       context: "Les freelances et prestataires techniques en Afrique de l'Ouest font face à un défi récurrent : valoriser leurs travaux de manière professionnelle et générer des documents de clôture de projet (attestations, résumés, posts sociaux) sans friction.",
