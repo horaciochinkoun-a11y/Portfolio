@@ -6,7 +6,7 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
 
-export default function Footer() {
+export default function Footer({ content }: any) {
   const currentYear = new Date().getFullYear();
 
   return (

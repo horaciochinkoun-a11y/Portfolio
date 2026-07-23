@@ -67,6 +67,7 @@ interface AboutProps {
 }
 
 export default function About({ content }: AboutProps) {
+  const showAboutQuote = content?.displaySettings?.showAboutQuote ?? true;
   const aboutHeadingText = content?.aboutHeading || "PRÉSENTATION & PHILOSOPHIE";
   const aboutTitleText = content?.aboutTitle || "À l'intersection de l'ingénierie rigoureuse et de la stratégie d'impact.";
   const aboutSubText = content?.aboutSub || "Bâtir des prototypes d'excellence qui durent.";
@@ -112,12 +113,14 @@ export default function About({ content }: AboutProps) {
             </div>
  
             {/* West African constraint card inside biography */}
-            <div className="mt-8 pt-6 border-t border-[#e7e2d8] flex items-start space-x-3">
-              <span className="text-xl text-brand-accent font-serif font-bold">“</span>
-              <p className="font-sans text-xs text-[#292625]/85 italic leading-relaxed">
-                {aboutQuoteText}
-              </p>
-            </div>
+            {showAboutQuote && (
+              <div className="mt-8 pt-6 border-t border-[#e7e2d8] flex items-start space-x-3">
+                <span className="text-xl text-brand-accent font-serif font-bold">“</span>
+                <p className="font-sans text-xs text-[#292625]/85 italic leading-relaxed">
+                  {aboutQuoteText}
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Right Column: Ecosystème de travail Card */}

@@ -4,7 +4,8 @@ import { db } from '../firebase';
 import { 
   Save, Sparkles, User, RefreshCw, CheckCircle, Database, 
   Mail, Linkedin, MessageSquare, MapPin, Briefcase, Cpu, 
-  Trash2, Plus, Ban, HelpCircle, Layers, FileText 
+  Trash2, Plus, Ban, HelpCircle, Layers, FileText,
+  Eye, Image as ImageIcon, EyeOff, LayoutTemplate
 } from 'lucide-react';
 
 interface PortfolioContent {
@@ -44,6 +45,23 @@ interface PortfolioContent {
     category: 'direct' | 'tech';
     description: string;
   }>;
+  
+  // Customization
+  heroImage?: string;
+  displaySettings?: {
+    showHeroImage?: boolean;
+    showHeroAvailability?: boolean;
+    showHeroNotice?: boolean;
+    showAboutSection?: boolean;
+    showAboutQuote?: boolean;
+    showSkillsSection?: boolean;
+    showProjectsSection?: boolean;
+    showServicesSection?: boolean;
+    showContactSection?: boolean;
+    showFloatingWhatsApp?: boolean;
+    showSocialLinksNavbar?: boolean;
+    showSocialLinksFooter?: boolean;
+  };
 }
 
 const defaultContent: PortfolioContent = {
@@ -137,7 +155,22 @@ const defaultContent: PortfolioContent = {
     { name: "Node.js / Express", category: "tech", description: "Mise en place de serveurs intermédiaires légers et d'APIs proxy." },
     { name: "Firebase / SQLite", category: "tech", description: "Stockage de données localisé, sécurisé et synchrone." },
     { name: "PWA (Offline-First)", category: "tech", description: "Conception d'applications web installables et résilientes hors-ligne." }
-  ]
+  ],
+  heroImage: "/images/horacio.png",
+  displaySettings: {
+    showHeroImage: true,
+    showHeroAvailability: true,
+    showHeroNotice: true,
+    showAboutSection: true,
+    showAboutQuote: true,
+    showSkillsSection: true,
+    showProjectsSection: true,
+    showServicesSection: true,
+    showContactSection: true,
+    showFloatingWhatsApp: true,
+    showSocialLinksNavbar: true,
+    showSocialLinksFooter: true,
+  }
 };
 
 export default function ContentAdmin() {
@@ -145,7 +178,11 @@ export default function ContentAdmin() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [activeTab, setActiveTab] = useState<'hero' | 'services' | 'skills' | 'contact'>('hero');
+  const [activeTab, setActiveTab] = useState<'hero' | 'services' | 'skills' | 'contact' | 'display'>('hero');
+  
+  // Customization State
+  const [heroImage, setHeroImage] = useState('');
+  const [displaySettings, setDisplaySettings] = useState(defaultContent.displaySettings);
 
   // Hero & About State
   const [availability, setAvailability] = useState('');
@@ -213,6 +250,12 @@ export default function ContentAdmin() {
     setServicesList(data.services || defaultContent.services || []);
     setExclusionsList(data.exclusions || defaultContent.exclusions || []);
     setSkillsList(data.skills || defaultContent.skills || []);
+    
+    setHeroImage(data.heroImage || defaultContent.heroImage || '');
+    setDisplaySettings({
+      ...defaultContent.displaySettings,
+      ...(data.displaySettings || {})
+    });
   };
 
   const handleInitialize = async () => {
@@ -254,7 +297,10 @@ export default function ContentAdmin() {
 
       services: servicesList,
       exclusions: exclusionsList,
-      skills: skillsList
+      skills: skillsList,
+      
+      heroImage: heroImage.trim(),
+      displaySettings
     };
 
     try {
@@ -432,6 +478,13 @@ export default function ContentAdmin() {
             className={`pb-4 px-6 text-xs font-bold uppercase tracking-wider border-b-2 ${activeTab === 'contact' ? 'border-[#181615] text-[#181615]' : 'border-transparent text-gray-400 hover:text-gray-600'}`}
           >
             <Mail className="w-4 h-4 inline-block mr-2 -mt-0.5" /> Coordonnées & Contact
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('display')}
+            className={`pb-4 px-6 text-xs font-bold uppercase tracking-wider border-b-2 ${activeTab === 'display' ? 'border-[#181615] text-[#181615]' : 'border-transparent text-gray-400 hover:text-gray-600'}`}
+          >
+            <LayoutTemplate className="w-4 h-4 inline-block mr-2 -mt-0.5" /> UI & Visibilité
           </button>
         </div>
 
@@ -922,6 +975,68 @@ export default function ContentAdmin() {
                     </p>
                   </div>
                 )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 5: Display Settings */}
+        {activeTab === 'display' && (
+          <div className="space-y-8 fade-in">
+            <h3 className="text-sm font-bold text-gray-900 border-b border-gray-100 pb-2 uppercase tracking-wider">Configuration de l'Interface</h3>
+            
+            <div className="space-y-6">
+              <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest flex items-center">
+                <ImageIcon className="w-4 h-4 mr-2 text-brand-accent" /> Images Globales
+              </h4>
+              <div className="bg-[#faf8f5] border border-[#e7e2d8] p-5">
+                <label className="font-sans font-extrabold text-[10px] text-slate-700 uppercase tracking-widest block mb-2">Portrait de la page d'accueil</label>
+                <input
+                  type="text"
+                  value={heroImage}
+                  onChange={(e) => setHeroImage(e.target.value)}
+                  placeholder="/images/horacio.png"
+                  className="w-full bg-white border border-[#e7e2d8] focus:border-[#181615] focus:ring-0 rounded-none py-3 px-4 text-xs text-slate-800 transition-all focus:outline-none"
+                />
+                <p className="text-[10px] text-gray-500 mt-2">Exemple: /images/votre-photo.jpg (assurez-vous d'avoir uploadé l'image via l'onglet Fichiers)</p>
+              </div>
+            </div>
+
+            <div className="space-y-6 pt-6 border-t border-gray-100">
+              <div className="flex flex-col space-y-1">
+                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest flex items-center">
+                  <Eye className="w-4 h-4 mr-2 text-brand-accent" /> Visibilité des sections et éléments
+                </h4>
+                <p className="text-[11px] text-gray-500">Cochez les éléments que vous souhaitez afficher sur le site. Décochez pour les masquer (pratique si vous n'avez pas encore terminé leur configuration).</p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  { key: 'showHeroImage', label: 'Portrait (Accueil)' },
+                  { key: 'showHeroAvailability', label: 'Bandeau disponibilité' },
+                  { key: 'showHeroNotice', label: 'Notice méthodologique' },
+                  { key: 'showAboutSection', label: 'Section Présentation' },
+                  { key: 'showAboutQuote', label: 'Citation (Présentation)' },
+                  { key: 'showSkillsSection', label: 'Section Compétences' },
+                  { key: 'showProjectsSection', label: 'Section Projets' },
+                  { key: 'showServicesSection', label: 'Section Prestations' },
+                  { key: 'showContactSection', label: 'Section Contact' },
+                  { key: 'showFloatingWhatsApp', label: 'Bouton WhatsApp flottant' },
+                  
+                ].map(({ key, label }) => {
+                  const isVisible = displaySettings?.[key as keyof typeof displaySettings] ?? true;
+                  return (
+                    <label key={key} className={`flex items-center space-x-3 p-4 border transition-all cursor-pointer ${isVisible ? 'bg-[#faf8f5] border-[#e7e2d8] hover:border-[#181615]' : 'bg-gray-50 border-gray-200 opacity-60'}`}>
+                      <input
+                        type="checkbox"
+                        checked={isVisible}
+                        onChange={(e) => setDisplaySettings(prev => ({ ...prev, [key]: e.target.checked }))}
+                        className="w-4 h-4 text-[#181615] bg-white border-gray-300 rounded-none focus:ring-[#181615]"
+                      />
+                      <span className={`text-xs font-bold ${isVisible ? 'text-gray-900' : 'text-gray-500'}`}>{label}</span>
+                    </label>
+                  );
+                })}
               </div>
             </div>
           </div>

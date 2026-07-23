@@ -8,9 +8,11 @@ import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   currentRouteType?: 'home' | 'project';
+  content?: any;
 }
 
-export default function Navbar({ currentRouteType = 'home' }: NavbarProps) {
+export default function Navbar({ currentRouteType = 'home', content }: NavbarProps) {
+  const showSocials = content?.displaySettings?.showSocialLinksNavbar ?? true;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

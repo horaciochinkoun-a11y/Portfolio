@@ -2,7 +2,6 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
-
 import React from 'react';
 import { ArrowDown, MessageSquare, Briefcase, Sparkles } from 'lucide-react';
 
@@ -12,19 +11,29 @@ interface HeroProps {
     heroTitle?: string;
     heroSub?: string;
     heroNotice?: string;
+    heroImage?: string;
+    displaySettings?: {
+      showHeroImage?: boolean;
+      showHeroAvailability?: boolean;
+      showHeroNotice?: boolean;
+    }
   } | null;
 }
 
 export default function Hero({ content }: HeroProps) {
-  const availabilityText = content?.availability || "DISPONIBLE • ORCHESTRATEUR IA & PRODUCT OWNER";
   const heroTitleText = content?.heroTitle || "Je transforme des idées produit en prototypes IA fonctionnels.";
   const heroSubText = content?.heroSub || "Architecte fonctionnel & orchestrateur d’IA. Je cadre le besoin, je rédige des spécifications précises, je pilote la réalisation technique par des agents IA, et je valide rigoureusement chaque écran.";
   const heroNoticeText = content?.heroNotice || "Transparence méthodologique : Je supervise et orchestre la technique via prompt engineering d'élite ; l'IA exécute le code sous ma direction.";
+  const heroImageSrc = content?.heroImage || "/images/horacio.png";
+  
+  const showHeroImage = content?.displaySettings?.showHeroImage ?? true;
+  const showHeroAvailability = content?.displaySettings?.showHeroAvailability ?? true;
+  const showHeroNotice = content?.displaySettings?.showHeroNotice ?? true;
 
   return (
     <section
       id="accueil"
-      className="relative min-h-screen pt-32 pb-20 flex items-center grid-pattern overflow-hidden bg-white"
+      className="relative min-h-screen pt-20 lg:pt-16 pb-32 lg:pb-40 flex items-center grid-pattern overflow-hidden bg-white"
     >
       {/* Soft warm overlays */}
       <div className="absolute top-1/4 right-[-5%] w-[450px] h-[450px] rounded-full bg-brand-accent/5 blur-[120px] pointer-events-none" />
@@ -35,15 +44,6 @@ export default function Hero({ content }: HeroProps) {
         {/* Left Side: Copy styled with the high-end premium font pairings */}
         <div className="lg:col-span-7 flex flex-col items-start space-y-8 fade-in" id="hero-content">
           
-          {/* Availability Badge */}
-          <div 
-            className="flex items-center space-x-2 bg-[#f4f1ea] border border-[#e7e2d8] text-slate-800 px-3.5 py-1.5 rounded-none text-[11px] font-mono font-bold tracking-wider uppercase shadow-xs"
-            id="availability-badge"
-          >
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>{availabilityText}</span>
-          </div>
-
           {/* Headline H1 with beautiful serif italic keywords */}
           <h1 
             className="font-sans text-4xl md:text-5xl xl:text-6.5xl font-extrabold text-[#181615] leading-[1.08] tracking-tight"
@@ -60,10 +60,12 @@ export default function Hero({ content }: HeroProps) {
             {heroSubText}
           </p>
 
-          <div className="font-mono text-xs text-[#292625]/80 bg-[#f4f1ea]/60 p-4 rounded-none border border-[#e7e2d8] max-w-lg leading-relaxed">
-            <Sparkles className="inline-block w-4 h-4 text-brand-accent mr-2 align-text-top" />
-            <span>{heroNoticeText}</span>
-          </div>
+          {showHeroNotice && (
+            <div className="font-mono text-xs text-[#292625]/80 bg-[#f4f1ea]/60 p-4 rounded-none border border-[#e7e2d8] max-w-lg leading-relaxed">
+              <Sparkles className="inline-block w-4 h-4 text-brand-accent mr-2 align-text-top" />
+              <span>{heroNoticeText}</span>
+            </div>
+          )}
 
           {/* CTA Group - Sharp flat design */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto pt-2" id="hero-ctas">
@@ -84,39 +86,21 @@ export default function Hero({ content }: HeroProps) {
               <span>CONSULTER MES RÉALISATIONS</span>
             </a>
           </div>
-
-          {/* Metrics section matching Aquilas Dev */}
-          <div className="grid grid-cols-2 gap-8 pt-6 border-t border-[#e7e2d8] w-full max-w-lg">
-            <div>
-              <span className="block text-[10px] font-mono tracking-wider text-slate-500 font-semibold uppercase">MAÎTRISE INTÉLLIGENCE ARTIFICIELLE</span>
-              <div className="flex items-baseline space-x-1.5 mt-1">
-                <span className="font-serif text-3xl md:text-4xl font-bold text-brand-accent">91%</span>
-                <span className="text-xs font-mono text-slate-500">(LLM)</span>
-              </div>
-            </div>
-            <div>
-              <span className="block text-[10px] font-mono tracking-wider text-slate-500 font-semibold uppercase">SCORE DE PERFORMANCE</span>
-              <div className="flex items-baseline space-x-1.5 mt-1">
-                <span className="font-serif text-3xl md:text-4xl font-bold text-[#181615]">75/100</span>
-                <span className="text-xs font-mono text-slate-500">(moyenne)</span>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         {/* Right Side: Clean Portrait exactly like the Aquilas Dev screenshot */}
-        <div className="lg:col-span-5 flex justify-center items-center relative" id="hero-visual">
-          <div className="relative w-full max-w-[420px] aspect-[4/5]">
-            <img
-              src="/images/horacio.png"
-              alt="Horacio Chinkoun"
-              referrerPolicy="no-referrer"
-              className="w-full h-full object-cover grayscale"
-            />
+        {showHeroImage && (
+          <div className="lg:col-span-5 flex justify-center items-center relative" id="hero-visual">
+            <div className="relative w-full max-w-[420px] aspect-[4/5]">
+              <img
+                src={heroImageSrc}
+                alt="Horacio Chinkoun"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover grayscale"
+              />
+            </div>
           </div>
-        </div>
-
+        )}
       </div>
 
       {/* Bounce Down Indicator */}

@@ -100,7 +100,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col justify-between selection:bg-[#ea580c] selection:text-white" id="portfolio-app-root">
       {/* Dynamic Floating Navbar with route awareness */}
-      <Navbar currentRouteType={currentRoute.type} />
+      <Navbar currentRouteType={currentRoute.type} content={portfolioContent} />
 
       <main className="flex-grow pt-[80px]" id="main-content-flow">
         {currentRoute.type === 'project' && activeProject ? (
@@ -111,27 +111,28 @@ export default function App() {
             <Hero content={portfolioContent} />
 
             {/* Professional Profile Bio & Method */}
-            <About content={portfolioContent} />
+            {(portfolioContent?.displaySettings?.showAboutSection ?? true) && <About content={portfolioContent} />}
 
             {/* Skill Matrix */}
-            <Skills content={portfolioContent} />
+            {(portfolioContent?.displaySettings?.showSkillsSection ?? true) && <Skills content={portfolioContent} />}
 
             {/* Interactive Products Portfolio & Studies Case */}
-            <Projects projectsList={dynamicProjects} />
+            {(portfolioContent?.displaySettings?.showProjectsSection ?? true) && <Projects projectsList={dynamicProjects} />}
 
             {/* Consultation Offerings */}
-            <Services content={portfolioContent} />
+            {(portfolioContent?.displaySettings?.showServicesSection ?? true) && <Services content={portfolioContent} />}
 
             {/* Contact Form Block */}
-            <Contact content={portfolioContent} />
+            {(portfolioContent?.displaySettings?.showContactSection ?? true) && <Contact content={portfolioContent} />}
           </>
         )}
       </main>
 
       {/* Universal Sticky Footer */}
-      <Footer />
+      <Footer content={portfolioContent} />
+
       {/* Floating WhatsApp Button */}
-      <FloatingWhatsApp content={portfolioContent} />
+      {(portfolioContent?.displaySettings?.showFloatingWhatsApp ?? true) && <FloatingWhatsApp content={portfolioContent} />}
     </div>
   );
 }
