@@ -48,6 +48,7 @@ interface PortfolioContent {
   
   // Customization
   heroImage?: string;
+  whatsappImage?: string;
   displaySettings?: {
     showHeroImage?: boolean;
     showHeroAvailability?: boolean;
@@ -182,6 +183,7 @@ export default function ContentAdmin() {
   
   // Customization State
   const [heroImage, setHeroImage] = useState('');
+  const [whatsappImage, setWhatsappImage] = useState('');
   const [displaySettings, setDisplaySettings] = useState(defaultContent.displaySettings);
 
   // Hero & About State
@@ -252,6 +254,7 @@ export default function ContentAdmin() {
     setSkillsList(data.skills || defaultContent.skills || []);
     
     setHeroImage(data.heroImage || defaultContent.heroImage || '');
+    setWhatsappImage(data.whatsappImage || defaultContent.whatsappImage || '');
     setDisplaySettings({
       ...defaultContent.displaySettings,
       ...(data.displaySettings || {})
@@ -300,6 +303,7 @@ export default function ContentAdmin() {
       skills: skillsList,
       
       heroImage: heroImage.trim(),
+      whatsappImage: whatsappImage.trim(),
       displaySettings
     };
 
@@ -989,16 +993,30 @@ export default function ContentAdmin() {
               <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest flex items-center">
                 <ImageIcon className="w-4 h-4 mr-2 text-brand-accent" /> Images Globales
               </h4>
-              <div className="bg-[#faf8f5] border border-[#e7e2d8] p-5">
-                <label className="font-sans font-extrabold text-[10px] text-slate-700 uppercase tracking-widest block mb-2">Portrait de la page d'accueil</label>
-                <input
-                  type="text"
-                  value={heroImage}
-                  onChange={(e) => setHeroImage(e.target.value)}
-                  placeholder="/images/horacio.png"
-                  className="w-full bg-white border border-[#e7e2d8] focus:border-[#181615] focus:ring-0 rounded-none py-3 px-4 text-xs text-slate-800 transition-all focus:outline-none"
-                />
-                <p className="text-[10px] text-gray-500 mt-2">Exemple: /images/votre-photo.jpg (assurez-vous d'avoir uploadé l'image via l'onglet Fichiers)</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-[#faf8f5] border border-[#e7e2d8] p-5">
+                  <label className="font-sans font-extrabold text-[10px] text-slate-700 uppercase tracking-widest block mb-2">Portrait de la page d'accueil</label>
+                  <input
+                    type="text"
+                    value={heroImage}
+                    onChange={(e) => setHeroImage(e.target.value)}
+                    placeholder="/images/horacio.png"
+                    className="w-full bg-white border border-[#e7e2d8] focus:border-[#181615] focus:ring-0 rounded-none py-3 px-4 text-xs text-slate-800 transition-all focus:outline-none"
+                  />
+                  <p className="text-[10px] text-gray-500 mt-2">Exemple: /images/votre-photo.jpg (assurez-vous d'avoir uploadé l'image via l'onglet Fichiers)</p>
+                </div>
+
+                <div className="bg-[#faf8f5] border border-[#e7e2d8] p-5">
+                  <label className="font-sans font-extrabold text-[10px] text-slate-700 uppercase tracking-widest block mb-2">Logo / Icône WhatsApp</label>
+                  <input
+                    type="text"
+                    value={whatsappImage}
+                    onChange={(e) => setWhatsappImage(e.target.value)}
+                    placeholder="/images/whatsapp.svg"
+                    className="w-full bg-white border border-[#e7e2d8] focus:border-[#181615] focus:ring-0 rounded-none py-3 px-4 text-xs text-slate-800 transition-all focus:outline-none"
+                  />
+                  <p className="text-[10px] text-gray-500 mt-2">Exemple: /images/whatsapp.svg (ou votre propre image uploadée)</p>
+                </div>
               </div>
             </div>
 

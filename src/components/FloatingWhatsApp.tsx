@@ -1,9 +1,9 @@
 import React from 'react';
-import { MessageCircle } from 'lucide-react';
 
 interface FloatingWhatsAppProps {
   content?: {
     contactWhatsapp?: string;
+    whatsappImage?: string;
   } | null;
 }
 
@@ -11,16 +11,23 @@ export default function FloatingWhatsApp({ content }: FloatingWhatsAppProps) {
   const whatsappNumber = content?.contactWhatsapp || "+229 99 06 25 59";
   const cleanWhatsappNumber = whatsappNumber.replace(/\D/g, '');
   const whatsappLink = `https://wa.me/${cleanWhatsappNumber}`;
+  const whatsappImg = content?.whatsappImage || "/images/whatsapp.svg";
 
   return (
     <a
       href={whatsappLink}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#20bd5a] hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#25D366]/50"
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#25D366]/50 flex items-center justify-center overflow-hidden border-2 border-white bg-[#25D366]"
       aria-label="Discuter sur WhatsApp"
+      id="floating-whatsapp-button"
     >
-      <MessageCircle className="w-6 h-6" />
+      <img
+        src={whatsappImg}
+        alt="WhatsApp"
+        referrerPolicy="no-referrer"
+        className="w-full h-full object-cover rounded-full"
+      />
     </a>
   );
 }

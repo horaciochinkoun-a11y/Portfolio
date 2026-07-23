@@ -230,8 +230,13 @@ export default function Contact({ content }: ContactProps) {
 
               {/* WhatsApp Link */}
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-[#faf8f5] border border-[#e7e2d8] text-brand-accent rounded-none shrink-0">
-                  <MessageCircle className="w-5 h-5" />
+                <div className="w-11 h-11 rounded-full overflow-hidden shrink-0 border border-[#e7e2d8] shadow-xs">
+                  <img
+                    src={content?.whatsappImage || "/images/whatsapp.svg"}
+                    alt="WhatsApp"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </div>
                 <div>
                   <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
