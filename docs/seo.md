@@ -1,11 +1,20 @@
 # Stratégie SEO (Search Engine Optimization) — Portfolio
-> Mots-clés sémantiques, balises meta, et plan à long terme pour l'indexation.
+> Domaine Officiel : https://horaciochinkoun.site
+> Mots-clés sémantiques, balises meta, sitemap.xml, robots.txt et plan à long terme pour l'indexation.
 
 ---
 
-## 1. Mots-clés Cibles
+## 1. URL Canonique & Configuration
+*   **Domaine officiel :** `https://horaciochinkoun.site/`
+*   **Fichier Sitemap :** `https://horaciochinkoun.site/sitemap.xml`
+*   **Fichier Robots :** `https://horaciochinkoun.site/robots.txt`
+
+---
+
+## 2. Mots-clés Cibles
 
 ### Primaires (Cœur de cible)
+*   `Horacio CHINKOUN`
 *   `Architecte Fonctionnel IA Bénin`
 *   `Product Owner IA Cotonou`
 *   `Orchestrateur de produits IA`
@@ -21,26 +30,28 @@
 
 ---
 
-## 2. Structure Métadonnées HTML (`index.html`)
-
-Le fichier `index.html` doit intégrer les balises sémantiques suivantes pour assurer une indexation propre par les robots (Googlebot) et une belle apparence lors du partage de liens (Open Graph) :
+## 3. Structure Métadonnées HTML (`index.html`)
 
 ```html
 <!-- SEO de base -->
-<title>Horacio Chinkoun | Architecte Fonctionnel & Orchestrateur de Produits IA</title>
-<meta name="description" content="Découvrez le portfolio de Horacio Chinkoun, Product Owner et Orchestrateur IA basé au Bénin. Cadrage fonctionnel de MVPs, ingénierie de prompts d'élite, et prototypes sémantiques." />
-<meta name="keywords" content="Architecte Fonctionnel, Product Owner, IA, Bénin, Prompt Engineer, SaaS, Cotonou, MVP, EdTech" />
+<title>Horacio CHINKOUN — Architecte Fonctionnel & Orchestrateur de Produits IA</title>
+<meta name="description" content="Portfolio d'Horacio CHINKOUN, Architecte Fonctionnel & Orchestrateur de Produits IA. Conception, cadrage produit et livraison de prototypes IA à fort impact." />
+<meta name="keywords" content="Horacio CHINKOUN, Architecte Fonctionnel, Orchestrateur IA, Product Owner, Prototypes IA, Intelligence Artificielle, Portfolio" />
+<link rel="canonical" href="https://horaciochinkoun.site/" />
 
-<!-- Open Graph / Facebook -->
+<!-- Open Graph / LinkedIn -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Horacio Chinkoun | Concepteur de Produits IA" />
-<meta property="og:description" content="Cadrage de MVPs, prompt engineering socratique et pilotage d'agents de développement autonomes." />
-<meta property="og:url" content="https://horaciochinkoun.site" />
+<meta property="og:url" content="https://horaciochinkoun.site/" />
+<meta property="og:title" content="Horacio CHINKOUN — Architecte Fonctionnel & Orchestrateur de Produits IA" />
+<meta property="og:description" content="Conception, cadrage produit et livraison de prototypes IA à fort impact." />
+<meta property="og:image" content="https://horaciochinkoun.site/images/horacio.png" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Horacio Chinkoun | Orchestrateur IA" />
-<meta name="twitter:description" content="Piloter la technique par l'IA, cadrer la valeur par l'humain." />
+<meta name="twitter:url" content="https://horaciochinkoun.site/" />
+<meta name="twitter:title" content="Horacio CHINKOUN — Architecte Fonctionnel & Orchestrateur de Produits IA" />
+<meta name="twitter:description" content="Conception, cadrage produit et livraison de prototypes IA à fort impact." />
+<meta name="twitter:image" content="https://horaciochinkoun.site/images/horacio.png" />
 ```
 
 ---

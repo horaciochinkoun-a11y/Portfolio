@@ -9,7 +9,6 @@ import {
 } from 'lucide-react';
 
 interface PortfolioContent {
-  availability: string;
   heroTitle: string;
   heroSub: string;
   heroNotice: string;
@@ -51,7 +50,6 @@ interface PortfolioContent {
   whatsappImage?: string;
   displaySettings?: {
     showHeroImage?: boolean;
-    showHeroAvailability?: boolean;
     showHeroNotice?: boolean;
     showAboutSection?: boolean;
     showAboutQuote?: boolean;
@@ -66,7 +64,6 @@ interface PortfolioContent {
 }
 
 const defaultContent: PortfolioContent = {
-  availability: "DISPONIBLE • ORCHESTRATEUR IA & PRODUCT OWNER",
   heroTitle: "Je transforme des idées produit en prototypes IA fonctionnels.",
   heroSub: "Architecte fonctionnel & orchestrateur d’IA. Je cadre le besoin, je rédige des spécifications précises, je pilote la réalisation technique par des agents IA, et je valide rigoureusement chaque écran.",
   heroNotice: "Transparence méthodologique : Je supervise et orchestre la technique via prompt engineering d'élite ; l'IA exécute le code sous ma direction.",
@@ -160,7 +157,6 @@ const defaultContent: PortfolioContent = {
   heroImage: "/images/horacio.png",
   displaySettings: {
     showHeroImage: true,
-    showHeroAvailability: true,
     showHeroNotice: true,
     showAboutSection: true,
     showAboutQuote: true,
@@ -187,7 +183,6 @@ export default function ContentAdmin() {
   const [displaySettings, setDisplaySettings] = useState(defaultContent.displaySettings);
 
   // Hero & About State
-  const [availability, setAvailability] = useState('');
   const [heroTitle, setHeroTitle] = useState('');
   const [heroSub, setHeroSub] = useState('');
   const [heroNotice, setHeroNotice] = useState('');
@@ -231,7 +226,6 @@ export default function ContentAdmin() {
   }, []);
 
   const setFormValues = (data: PortfolioContent) => {
-    setAvailability(data.availability || '');
     setHeroTitle(data.heroTitle || '');
     setHeroSub(data.heroSub || '');
     setHeroNotice(data.heroNotice || '');
@@ -282,7 +276,6 @@ export default function ContentAdmin() {
     setSuccess(false);
 
     const updatedContent: PortfolioContent = {
-      availability: availability.trim(),
       heroTitle: heroTitle.trim(),
       heroSub: heroSub.trim(),
       heroNotice: heroNotice.trim(),
@@ -497,18 +490,6 @@ export default function ContentAdmin() {
           <div className="space-y-6">
             <h3 className="text-sm font-bold text-gray-900 border-b border-gray-100 pb-2 uppercase tracking-wider">En-tête de la Page</h3>
             
-            <div className="space-y-1.5">
-              <label className="font-sans font-extrabold text-[10px] text-slate-700 uppercase tracking-widest block">Badge de disponibilité</label>
-              <input
-                type="text"
-                required
-                value={availability}
-                onChange={(e) => setAvailability(e.target.value)}
-                placeholder="Ex: DISPONIBLE • ORCHESTRATEUR IA"
-                className="w-full bg-[#faf8f5] border border-[#e7e2d8] focus:border-[#181615] focus:ring-0 rounded-none py-3 px-4 text-xs text-slate-800 transition-all focus:outline-none"
-              />
-            </div>
-
             <div className="space-y-1.5">
               <label className="font-sans font-extrabold text-[10px] text-slate-700 uppercase tracking-widest block">Grand Titre de Présentation</label>
               <textarea
@@ -925,62 +906,7 @@ export default function ContentAdmin() {
               </div>
             </div>
 
-            {/* EmailJS Assistant Section */}
-            <div className="mt-8 pt-8 border-t border-gray-100 space-y-4">
-              <div className="flex items-center space-x-2">
-                <div className="p-1.5 bg-brand-accent/10 text-brand-accent">
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest">Acheminement des E-mails (EmailJS)</h4>
-              </div>
-
-              <div className="bg-[#faf8f5] border border-[#e7e2d8] p-5 space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <p className="font-sans text-[11px] text-[#292625]/80 max-w-xl leading-relaxed">
-                    Ce module permet de recevoir instantanément les messages envoyés depuis le formulaire public directement sur votre adresse email, tout en conservant une copie archivée et sécurisée dans votre console d’administration (onglet "Boîte de réception").
-                  </p>
-                  
-                  {/* Status Indicator */}
-                  {(import.meta as any).env.VITE_EMAILJS_SERVICE_ID && 
-                   (import.meta as any).env.VITE_EMAILJS_TEMPLATE_ID && 
-                   (import.meta as any).env.VITE_EMAILJS_PUBLIC_KEY ? (
-                    <span className="inline-flex items-center px-2.5 py-1 text-[10px] font-bold font-mono uppercase bg-emerald-50 text-emerald-700 border border-emerald-200">
-                      <CheckCircle className="w-3.5 h-3.5 mr-1 text-emerald-500" /> Actif & Connecté
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center px-2.5 py-1 text-[10px] font-bold font-mono uppercase bg-amber-50 text-amber-700 border border-amber-200">
-                      <HelpCircle className="w-3.5 h-3.5 mr-1 text-amber-500" /> En attente de clés
-                    </span>
-                  )}
-                </div>
-
-                {!((import.meta as any).env.VITE_EMAILJS_SERVICE_ID && 
-                   (import.meta as any).env.VITE_EMAILJS_TEMPLATE_ID && 
-                   (import.meta as any).env.VITE_EMAILJS_PUBLIC_KEY) && (
-                  <div className="text-[11px] text-gray-500 space-y-3 bg-white p-4 border border-[#e7e2d8]">
-                    <p className="font-semibold text-gray-800">Comment lier votre compte EmailJS nouvellement créé :</p>
-                    <ol className="list-decimal list-inside space-y-1.5 ml-1">
-                      <li>Rendez-vous dans les <strong>Settings (Paramètres)</strong> de l'interface AI Studio, puis dans l'onglet <strong>Secrets</strong>.</li>
-                      <li>Ajoutez les trois secrets suivants (en respectant les majuscules) :</li>
-                    </ol>
-                    <div className="bg-gray-50 p-3 font-mono text-[10px] space-y-2 border border-gray-100">
-                      <div>
-                        <span className="text-[#181615] font-bold">VITE_EMAILJS_SERVICE_ID</span> : <span className="text-gray-400 italic">votre Service ID (ex: service_xxxx)</span>
-                      </div>
-                      <div>
-                        <span className="text-[#181615] font-bold">VITE_EMAILJS_TEMPLATE_ID</span> : <span className="text-gray-400 italic">votre Template ID (ex: template_xxxx)</span>
-                      </div>
-                      <div>
-                        <span className="text-[#181615] font-bold">VITE_EMAILJS_PUBLIC_KEY</span> : <span className="text-gray-400 italic">votre Public Key / Clé Publique (ex: xxxx_xxxx_xxxx)</span>
-                      </div>
-                    </div>
-                    <p className="text-[10px] italic text-brand-accent pt-1">
-                      Note : Pour un déploiement ou un test en local, vous pouvez également renseigner ces variables directement dans votre fichier <code>.env</code>.
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
+            {/* EmailJS Assistant Section - REMOVED */}
           </div>
         )}
 
@@ -1031,7 +957,6 @@ export default function ContentAdmin() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
                   { key: 'showHeroImage', label: 'Portrait (Accueil)' },
-                  { key: 'showHeroAvailability', label: 'Bandeau disponibilité' },
                   { key: 'showHeroNotice', label: 'Notice méthodologique' },
                   { key: 'showAboutSection', label: 'Section Présentation' },
                   { key: 'showAboutQuote', label: 'Citation (Présentation)' },

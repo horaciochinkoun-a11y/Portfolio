@@ -63,11 +63,19 @@ interface AboutProps {
     aboutText1?: string;
     aboutText2?: string;
     aboutQuote?: string;
+    displaySettings?: {
+      showAboutSection?: boolean;
+      showAboutQuote?: boolean;
+    }
   } | null;
 }
 
 export default function About({ content }: AboutProps) {
-  const showAboutQuote = content?.displaySettings?.showAboutQuote ?? true;
+  const showAboutSection = content?.displaySettings?.showAboutSection ?? true;
+  const showAboutQuote = (content?.displaySettings?.showAboutQuote ?? true) && !!content?.aboutQuote;
+  
+  if (!showAboutSection) return null;
+
   const aboutHeadingText = content?.aboutHeading || "PRÉSENTATION & PHILOSOPHIE";
   const aboutTitleText = content?.aboutTitle || "À l'intersection de l'ingénierie rigoureuse et de la stratégie d'impact.";
   const aboutSubText = content?.aboutSub || "Bâtir des prototypes d'excellence qui durent.";

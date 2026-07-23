@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 import { Mail, Linkedin, MapPin, Send, CheckCircle, Copy, MessageCircle } from 'lucide-react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
-import emailjs from '@emailjs/browser';
 
 // Fonction pour jouer un effet sonore élégant de succès via la Web Audio API
 const playSuccessSound = () => {
@@ -60,6 +59,7 @@ interface ContactProps {
     contactLinkedin?: string;
     contactWhatsapp?: string;
     contactLocation?: string;
+    whatsappImage?: string;
   } | null;
 }
 
@@ -106,31 +106,25 @@ export default function Contact({ content }: ContactProps) {
         createdAt: serverTimestamp()
       });
 
-      // 2. Notification par email via EmailJS si configuré
-      const serviceId = (import.meta as any).env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = (import.meta as any).env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = (import.meta as any).env.VITE_EMAILJS_PUBLIC_KEY;
-
-      if (serviceId && templateId && publicKey) {
-        try {
-          await emailjs.send(
-            serviceId,
-            templateId,
-            {
-              from_name: formData.name,
-              from_email: formData.email,
-              role: formData.role === 'client' ? 'Client (Besoin d\'un cadrage / MVP)' : formData.role === 'recruteur' ? 'Recruteur (Opportunité)' : 'Autre collaboration',
-              message: formData.message,
-              to_name: 'Horacio CHINKOUN',
-            },
-            publicKey
-          );
-        } catch (emailErr) {
-          console.error("Erreur lors de l'envoi d'email via EmailJS:", emailErr);
-          // Ne pas bloquer l'état succès si le message a bien été enregistré dans Firestore
-        }
-      } else {
-        console.warn("Configuration EmailJS manquante. Le message a été enregistré dans l'administration Firestore.");
+      // 2. Envoi automatique de l'e-mail directement vers la boîte de réception
+      try {
+        await fetch(`https://formsubmit.co/ajax/${emailAddress}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            role: formData.role === 'client' ? 'Client (Besoin d\'un cadrage / MVP)' : formData.role === 'recruteur' ? 'Recruteur (Opportunité)' : 'Autre collaboration',
+            message: formData.message,
+            _subject: `[Portfolio] Nouveau message de ${formData.name}`,
+            _template: "table"
+          })
+        });
+      } catch (mailErr) {
+        console.warn("L'e-mail n'a pas pu être acheminé via le service de notification direct, mais le message est bien conservé dans Firestore.", mailErr);
       }
 
       setIsSuccess(true);
@@ -174,107 +168,108 @@ export default function Contact({ content }: ContactProps) {
               </h3>
 
               {/* Email Card (with click-to-copy) */}
-              <div className="flex items-start space-x-4">
-                <div className="p-3 bg-[#faf8f5] border border-[#e7e2d8] text-brand-accent rounded-none shrink-0">
-                  <Mail className="w-5 h-5" />
+              {emailAddress && (
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-[#faf8f5] border border-[#e7e2d8] text-brand-accent rounded-none shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
+                      Email direct
+                    </span>
+                    <a
+                      href={`mailto:${emailAddress}`}
+                      className="font-mono text-xs text-slate-800 hover:text-brand-accent font-semibold break-all block"
+                    >
+                      {emailAddress}
+                    </a>
+                    
+                    <button
+                      onClick={handleCopyEmail}
+                      className="mt-2 inline-flex items-center space-x-1 text-[#181615] hover:bg-[#faf8f5] font-mono text-[9px] font-bold tracking-wider uppercase bg-white border border-[#181615] px-2.5 py-1 rounded-none cursor-pointer transition-all"
+                    >
+                      {isCopied ? (
+                        <>
+                          <CheckCircle className="w-3 h-3 text-emerald-500 mr-1" />
+                          <span className="text-emerald-700 font-sans">Copié !</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3 h-3 mr-1" />
+                          <span className="font-sans">Copier l'adresse</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
-                    Email direct
-                  </span>
-                  <a
-                    href={`mailto:${emailAddress}`}
-                    className="font-mono text-xs text-slate-800 hover:text-brand-accent font-semibold break-all block"
-                  >
-                    {emailAddress}
-                  </a>
-                  
-                  <button
-                    onClick={handleCopyEmail}
-                    className="mt-2 inline-flex items-center space-x-1 text-[#181615] hover:bg-[#faf8f5] font-mono text-[9px] font-bold tracking-wider uppercase bg-white border border-[#181615] px-2.5 py-1 rounded-none cursor-pointer transition-all"
-                  >
-                    {isCopied ? (
-                      <>
-                        <CheckCircle className="w-3 h-3 text-emerald-500 mr-1" />
-                        <span className="text-emerald-700 font-sans">Copié !</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3 h-3 mr-1" />
-                        <span className="font-sans">Copier l'adresse</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
+              )}
 
               {/* LinkedIn Link */}
-              <div className="flex items-start space-x-4">
-                <div className="p-3 bg-[#faf8f5] border border-[#e7e2d8] text-brand-accent rounded-none shrink-0">
-                  <Linkedin className="w-5 h-5" />
+              {linkedinUrl && (
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-[#faf8f5] border border-[#e7e2d8] text-brand-accent rounded-none shrink-0">
+                    <Linkedin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
+                      Réseaux pro
+                    </span>
+                    <a
+                      href={linkedinUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-sans text-xs text-slate-800 hover:text-brand-accent font-semibold block"
+                    >
+                      {linkedinUrl.replace('https://', '')}
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
-                    Réseaux pro
-                  </span>
-                  <a
-                    href={linkedinUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-sans text-xs text-slate-800 hover:text-brand-accent font-semibold block"
-                  >
-                    {linkedinUrl.replace('https://', '')}
-                  </a>
-                </div>
-              </div>
+              )}
 
               {/* WhatsApp Link */}
-              <div className="flex items-start space-x-4">
-                <div className="w-11 h-11 rounded-full overflow-hidden shrink-0 border border-[#e7e2d8] shadow-xs">
-                  <img
-                    src={content?.whatsappImage || "/images/whatsapp.svg"}
-                    alt="WhatsApp"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover rounded-full"
-                  />
+              {whatsappNumber && (
+                <div className="flex items-start space-x-4">
+                  <div className="w-11 h-11 rounded-full overflow-hidden shrink-0 border border-[#e7e2d8] shadow-xs">
+                    <img
+                      src={content?.whatsappImage || "/images/whatsapp.svg"}
+                      alt="WhatsApp"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+                  <div>
+                    <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
+                      Messagerie instantanée
+                    </span>
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-sans text-xs text-slate-800 hover:text-brand-accent font-semibold block"
+                    >
+                      {whatsappNumber}
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
-                    Messagerie instantanée
-                  </span>
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-sans text-xs text-slate-800 hover:text-brand-accent font-semibold block"
-                  >
-                    {whatsappNumber}
-                  </a>
-                </div>
-              </div>
+              )}
 
               {/* Location */}
-              <div className="flex items-start space-x-4">
-                <div className="p-3 bg-[#faf8f5] border border-[#e7e2d8] text-brand-accent rounded-none shrink-0">
-                  <MapPin className="w-5 h-5" />
+              {locationText && (
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-[#faf8f5] border border-[#e7e2d8] text-brand-accent rounded-none shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
+                      Localisation & Mobilité
+                    </span>
+                    <span className="font-sans text-xs text-slate-800 font-semibold block">
+                      {locationText}
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400 font-bold block mb-0.5">
-                    Localisation & Mobilité
-                  </span>
-                  <span className="font-sans text-xs text-slate-800 font-semibold block">
-                    {locationText}
-                  </span>
-                </div>
-              </div>
+              )}
 
-            </div>
-
-            {/* Note about Forms/Brief */}
-            <div className="bg-white border border-[#e7e2d8] p-5 rounded-none shadow-xs">
-              <p className="font-sans text-[11px] text-slate-500 leading-relaxed">
-                <strong>Hébergement LWS :</strong> Ce site est conçu pour être entièrement statique. En production, le formulaire peut être connecté à un service tiers gratuit comme <em>Formspree</em> ou <em>Web3Forms</em> pour un acheminement instantané de vos e-mails vers ma boîte de réception, sans nécessiter de serveur Node.js actif.
-              </p>
             </div>
 
           </div>

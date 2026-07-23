@@ -14,10 +14,16 @@ interface SkillsProps {
       category: 'direct' | 'tech';
       description: string;
     }>;
+    displaySettings?: {
+      showSkillsSection?: boolean;
+    }
   } | null;
 }
 
 export default function Skills({ content }: SkillsProps) {
+  const showSkillsSection = content?.displaySettings?.showSkillsSection ?? true;
+  if (!showSkillsSection) return null;
+
   const skillsList = content?.skills || defaultSkills;
 
   // Filter skills into categories

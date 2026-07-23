@@ -20,10 +20,16 @@ interface ServicesProps {
       title: string;
       text: string;
     }>;
+    displaySettings?: {
+      showServicesSection?: boolean;
+    }
   } | null;
 }
 
 export default function Services({ content }: ServicesProps) {
+  const showServicesSection = content?.displaySettings?.showServicesSection ?? true;
+  if (!showServicesSection) return null;
+
   const servicesList = content?.services || defaultServices;
   const exclusionsList = content?.exclusions || [
     { title: "Le code lourd from scratch", text: "Je ne vends pas d'heures de programmation manuelle de bas niveau." },

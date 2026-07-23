@@ -7,28 +7,25 @@ import { ArrowDown, MessageSquare, Briefcase, Sparkles } from 'lucide-react';
 
 interface HeroProps {
   content?: {
-    availability?: string;
     heroTitle?: string;
     heroSub?: string;
     heroNotice?: string;
     heroImage?: string;
     displaySettings?: {
       showHeroImage?: boolean;
-      showHeroAvailability?: boolean;
       showHeroNotice?: boolean;
     }
   } | null;
 }
 
 export default function Hero({ content }: HeroProps) {
-  const heroTitleText = content?.heroTitle || "Je transforme des idées produit en prototypes IA fonctionnels.";
-  const heroSubText = content?.heroSub || "Architecte fonctionnel & orchestrateur d’IA. Je cadre le besoin, je rédige des spécifications précises, je pilote la réalisation technique par des agents IA, et je valide rigoureusement chaque écran.";
-  const heroNoticeText = content?.heroNotice || "Transparence méthodologique : Je supervise et orchestre la technique via prompt engineering d'élite ; l'IA exécute le code sous ma direction.";
+  const heroTitleText = content?.heroTitle !== undefined ? content.heroTitle : "Je transforme des idées produit en prototypes IA fonctionnels.";
+  const heroSubText = content?.heroSub !== undefined ? content.heroSub : "Architecte fonctionnel & orchestrateur d’IA. Je cadre le besoin, je rédige des spécifications précises, je pilote la réalisation technique par des agents IA, et je valide rigoureusement chaque écran.";
+  const heroNoticeText = content?.heroNotice !== undefined ? content.heroNotice : "Transparence méthodologique : Je supervise et orchestre la technique via prompt engineering d'élite ; l'IA exécute le code sous ma direction.";
   const heroImageSrc = content?.heroImage || "/images/horacio.png";
   
-  const showHeroImage = content?.displaySettings?.showHeroImage ?? true;
-  const showHeroAvailability = content?.displaySettings?.showHeroAvailability ?? true;
-  const showHeroNotice = content?.displaySettings?.showHeroNotice ?? true;
+  const showHeroImage = (content?.displaySettings?.showHeroImage ?? true) && !!heroImageSrc;
+  const showHeroNotice = (content?.displaySettings?.showHeroNotice ?? true) && !!heroNoticeText;
 
   return (
     <section
@@ -45,20 +42,24 @@ export default function Hero({ content }: HeroProps) {
         <div className="lg:col-span-7 flex flex-col items-start space-y-8 fade-in" id="hero-content">
           
           {/* Headline H1 with beautiful serif italic keywords */}
-          <h1 
-            className="font-sans text-4xl md:text-5xl xl:text-6.5xl font-extrabold text-[#181615] leading-[1.08] tracking-tight"
-            id="hero-headline"
-          >
-            {heroTitleText}
-          </h1>
+          {heroTitleText && (
+            <h1 
+              className="font-sans text-4xl md:text-5xl xl:text-6.5xl font-extrabold text-[#181615] leading-[1.08] tracking-tight"
+              id="hero-headline"
+            >
+              {heroTitleText}
+            </h1>
+          )}
 
           {/* Sub-headline */}
-          <p 
-            className="font-sans text-base md:text-lg text-[#292625]/85 max-w-xl leading-relaxed font-normal"
-            id="hero-subheadline"
-          >
-            {heroSubText}
-          </p>
+          {heroSubText && (
+            <p 
+              className="font-sans text-base md:text-lg text-[#292625]/85 max-w-xl leading-relaxed font-normal"
+              id="hero-subheadline"
+            >
+              {heroSubText}
+            </p>
+          )}
 
           {showHeroNotice && (
             <div className="font-mono text-xs text-[#292625]/80 bg-[#f4f1ea]/60 p-4 rounded-none border border-[#e7e2d8] max-w-lg leading-relaxed">
